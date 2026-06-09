@@ -3,12 +3,38 @@ import { useState, useEffect } from "react";
 import { BottomNav } from "./BottomNav";
 import { ChefMascot } from "./ChefMascot";
 import { useTheme } from "../context/ThemeContext";
+import chefGirl from "../../imports/chef_girl_transparent_v2.png";
+import chefBoy from "../../imports/chef_boy_transparent.png";
 import { getFavorites } from "../utils/favorites";
 import { getCompletedRecipes } from "../utils/completedRecipes";
 import { recipes } from "../data/recipes";
 
+import { toast } from "sonner";
+
 export function ProfilScreen() {
   const { mode, setMode, colors } = useTheme();
+  const [mascotGender, setMascotGender] = useState("perempuan");
+
+  useEffect(() => {
+    const saved = localStorage.getItem("mascot-gender");
+    if (saved) {
+      setMascotGender(saved);
+    }
+  }, []);
+
+  const handleMascotChange = (gender: string) => {
+    setMascotGender(gender);
+    localStorage.setItem("mascot-gender", gender);
+    window.dispatchEvent(new Event("mascot-changed"));
+    
+    const mascotName = gender === "laki-laki" ? "Chef Laki-Laki 👦" : "Chef Perempuan 👧";
+    toast.success(`Karakter berhasil diubah menjadi ${mascotName}! 🎉`, {
+      style: {
+        fontFamily: "'Fredoka', sans-serif",
+        borderRadius: "16px",
+      }
+    });
+  };
   const [stats, setStats] = useState([
     { label: "Resep Selesai", value: "0", emoji: "✅" },
     { label: "Badge", value: "0", emoji: "🏆" },
@@ -107,7 +133,7 @@ export function ProfilScreen() {
   }, []);
 
   const themeOptions = [
-    { id: "fresh", name: "Fresh", color: "#646B41", desc: "Hijau Natural & Tenang" },
+    { id: "fresh", name: "Fresh", color: "#9AD872", desc: "Hijau Segar & Oranye Hangat" },
     { id: "pink", name: "Pink", color: "#D6336C", desc: "Ceria & Manis" },
     { id: "dark", name: "Dark", color: "#133E87", desc: "Elegan & Modern" },
   ] as const;
@@ -116,7 +142,7 @@ export function ProfilScreen() {
     <div className="min-h-screen pt-16 pb-8" style={{ background: colors.background }}>
       <div
         className="px-4 md:px-8 lg:px-12 pt-8 pb-8 rounded-b-[2rem]"
-        style={{ background: `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})` }}
+        style={{ backgroundColor: colors.primary }}
       >
         <div className="max-w-4xl mx-auto">
         <div className="flex items-center gap-4">
@@ -187,6 +213,51 @@ export function ProfilScreen() {
                 )}
               </button>
             ))}
+          </div>
+        </div>
+
+        <div>
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-xl">🧑‍🍳</span>
+            <h2 className="text-lg font-bold" style={{ color: colors.text }}>
+              Pilih Karakter Maskot
+            </h2>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <button
+              onClick={() => handleMascotChange("perempuan")}
+              className={`rounded-2xl p-4 flex flex-col items-center gap-3 transition-all shadow-md hover:shadow-lg ${
+                mascotGender === "perempuan" ? "ring-4" : ""
+              }`}
+              style={{
+                backgroundColor: colors.cardBg,
+                ringColor: mascotGender === "perempuan" ? colors.primary : "transparent",
+              }}
+            >
+              <div className="w-16 h-16 rounded-full overflow-hidden bg-pink-100 flex items-center justify-center border-2 border-pink-300">
+                <img src={chefGirl} alt="Chef Perempuan" className="w-12 h-12 object-contain" />
+              </div>
+              <span className="font-bold text-sm" style={{ color: colors.text }}>
+                Chef Perempuan 👧
+              </span>
+            </button>
+            <button
+              onClick={() => handleMascotChange("laki-laki")}
+              className={`rounded-2xl p-4 flex flex-col items-center gap-3 transition-all shadow-md hover:shadow-lg ${
+                mascotGender === "laki-laki" ? "ring-4" : ""
+              }`}
+              style={{
+                backgroundColor: colors.cardBg,
+                ringColor: mascotGender === "laki-laki" ? colors.primary : "transparent",
+              }}
+            >
+              <div className="w-16 h-16 rounded-full overflow-hidden bg-blue-100 flex items-center justify-center border-2 border-blue-300">
+                <img src={chefBoy} alt="Chef Laki-laki" className="w-12 h-12 object-contain" />
+              </div>
+              <span className="font-bold text-sm" style={{ color: colors.text }}>
+                Chef Laki-Laki 👦
+              </span>
+            </button>
           </div>
         </div>
 

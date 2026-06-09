@@ -47,7 +47,7 @@ export function FavoritScreen() {
     <div className="min-h-screen pt-16 pb-8" style={{ background: colors.background }}>
       <div
         className="px-4 md:px-8 lg:px-12 pt-8 pb-6 rounded-b-[2rem]"
-        style={{ background: `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})` }}
+        style={{ backgroundColor: colors.primary }}
       >
         <div className="max-w-6xl mx-auto">
         <h1 className="text-3xl font-bold text-white mb-2 drop-shadow-md">
@@ -84,7 +84,7 @@ export function FavoritScreen() {
                 >
                   <div
                     className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl shadow-md flex-shrink-0"
-                    style={{ background: `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})` }}
+                    style={{ backgroundColor: colors.primary }}
                   >
                     {recipe.emoji}
                   </div>
@@ -146,7 +146,7 @@ export function FavoritScreen() {
             <button
               onClick={() => navigate("/kategori")}
               className="mt-6 px-8 py-3 rounded-full text-white font-semibold shadow-lg hover:shadow-xl transition-all"
-              style={{ background: `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})` }}
+              style={{ backgroundColor: colors.primary }}
             >
               Cari Resep
             </button>

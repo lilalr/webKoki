@@ -27,8 +27,8 @@ export function KitchenToolsListScreen() {
               </h1>
             </div>
           </div>
-          <p className="text-base md:text-lg ml-16" style={{ color: colors.textSecondary }}>
-            Pelajari cara menggunakan alat dapur dengan aman!
+          <p className="text-base md:text-lg ml-16 max-w-3xl leading-relaxed" style={{ color: colors.textSecondary }}>
+            Edukasi mengenai alat-alat dapur dasar sebelum memulai memasak. Pelajari cara menggunakan alat dapur dengan aman!
           </p>
         </div>
 
@@ -45,7 +45,7 @@ export function KitchenToolsListScreen() {
                 {/* Icon */}
                 <div
                   className="w-[80px] h-[80px] rounded-[20px] flex items-center justify-center text-5xl flex-shrink-0 shadow-md"
-                  style={{ background: `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})` }}
+                  style={{ backgroundColor: colors.primary }}
                 >
                   {tool.emoji}
                 </div>

@@ -1,6 +1,8 @@
+import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router";
 import { getRecipeById } from "../data/recipes";
 import { useTheme } from "../context/ThemeContext";
+import { addCompletedRecipe } from "../utils/completedRecipes";
 
 export function CompletionScreen() {
   const navigate = useNavigate();
@@ -9,8 +11,14 @@ export function CompletionScreen() {
   const recipeId = searchParams.get("recipeId");
   const recipe = recipeId ? getRecipeById(recipeId) : null;
 
+  useEffect(() => {
+    if (recipeId) {
+      addCompletedRecipe(recipeId);
+    }
+  }, [recipeId]);
+
   return (
-    <div className="min-h-screen flex items-center justify-center relative overflow-hidden" style={{ background: `linear-gradient(to bottom, ${colors.primary}20, ${colors.secondary}20)` }}>
+    <div className="min-h-screen flex items-center justify-center relative overflow-hidden" style={{ backgroundColor: `${colors.primary}12` }}>
       {/* Confetti shapes scattered */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Colorful dots */}
@@ -194,7 +202,7 @@ export function CompletionScreen() {
           <button
             onClick={() => navigate("/kategori")}
             className="w-full py-4 text-white rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-all"
-            style={{ background: `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})` }}
+            style={{ backgroundColor: colors.primary }}
           >
             Coba Resep Lain 🍳
           </button>
@@ -211,20 +219,6 @@ export function CompletionScreen() {
           >
             Kembali ke Menu
           </button>
-        </div>
-
-        {/* Share section */}
-        <div className="text-center">
-          <p className="text-sm mb-4" style={{ color: colors.textSecondary }}>Bagikan ke teman kamu! 📸</p>
-
-          <div className="flex gap-3">
-            <button className="flex-1 bg-gradient-to-r from-[#E1306C] to-[#F56040] text-white px-5 py-3 rounded-full font-bold shadow-lg hover:shadow-xl transition-all">
-              📸 Instagram
-            </button>
-            <button className="flex-1 bg-[#25D366] text-white px-5 py-3 rounded-full font-bold shadow-lg hover:shadow-xl transition-all">
-              💬 WhatsApp
-            </button>
-          </div>
         </div>
       </div>
     </div>

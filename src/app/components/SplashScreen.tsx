@@ -1,14 +1,29 @@
 import { useNavigate } from "react-router";
 import { useTheme } from "../context/ThemeContext";
 import chefImage from "../../imports/chef_girl_transparent_v2.png";
+import chefBoy from "../../imports/chef_boy_transparent.png";
+import { useState, useEffect } from "react";
 
 export function SplashScreen() {
   const navigate = useNavigate();
   const { colors } = useTheme();
+  const [mascot, setMascot] = useState("perempuan");
+
+  useEffect(() => {
+    const updateMascot = () => {
+      const savedMascot = localStorage.getItem("mascot-gender");
+      if (savedMascot) {
+        setMascot(savedMascot);
+      }
+    };
+    updateMascot();
+    window.addEventListener("mascot-changed", updateMascot);
+    return () => window.removeEventListener("mascot-changed", updateMascot);
+  }, []);
 
   return (
     <div 
-      className="relative min-h-screen w-full flex flex-col lg:flex-row overflow-hidden font-sans transition-colors duration-300"
+      className="relative min-h-screen w-full flex flex-col lg:flex-row overflow-hidden transition-colors duration-300"
       style={{ backgroundColor: colors.background }}
     >
       {/* Background SVG Waves */}
@@ -139,8 +154,8 @@ export function SplashScreen() {
       <div className="z-10 lg:w-[60%] flex flex-col justify-center items-center p-6 md:p-12 lg:p-20 min-h-[45vh] lg:min-h-screen relative">
         <div className="relative w-full max-w-[280px] sm:max-w-[360px] md:max-w-[420px] lg:max-w-[480px] aspect-square flex items-center justify-center animate-float">
           <img
-            src={chefImage}
-            alt="Chef Girl Mascot"
+            src={mascot === "laki-laki" ? chefBoy : chefImage}
+            alt="Chef Mascot"
             className="w-full h-full object-contain filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.25)]"
           />
         </div>

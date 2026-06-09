@@ -10,7 +10,7 @@ export function DangerWarning({ text }: DangerWarningProps) {
 
   return (
     <div
-      className="flex items-start gap-3 p-4 rounded-2xl border-2 mt-2 animate-pulse"
+      className="flex items-start gap-3 p-4 rounded-2xl border-2 mt-2 animate-fade-in"
       style={{
         backgroundColor: `${colors.danger}10`,
         borderColor: colors.danger,
@@ -18,7 +18,7 @@ export function DangerWarning({ text }: DangerWarningProps) {
     >
       <div className="flex-shrink-0 mt-0.5">
         <div
-          className="w-8 h-8 rounded-full flex items-center justify-center animate-bounce"
+          className="w-8 h-8 rounded-full flex items-center justify-center animate-shake-danger"
           style={{ backgroundColor: colors.danger }}
         >
           <AlertTriangle size={18} className="text-white" strokeWidth={2.5} />

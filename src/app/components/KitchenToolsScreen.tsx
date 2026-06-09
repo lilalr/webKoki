@@ -55,7 +55,7 @@ export function KitchenToolsScreen() {
           <button
             onClick={() => navigate("/alat-dapur")}
             className="mt-4 px-6 py-3 rounded-full text-white font-semibold shadow-lg transition-all"
-            style={{ background: `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})` }}
+            style={{ backgroundColor: colors.primary }}
           >
             Kembali
           </button>
@@ -90,11 +90,22 @@ export function KitchenToolsScreen() {
           </p>
         </div>
 
+        {/* Tool Photo */}
+        {tool.image && (
+          <div className="relative aspect-video w-full rounded-[24px] overflow-hidden shadow-md mb-6 bg-gray-100">
+            <img
+              src={tool.image}
+              alt={tool.title}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        )}
+
         {/* Danger warning */}
         {tool.isDanger && (
-          <div className="rounded-[16px] p-4 mb-6 shadow-md" style={{ backgroundColor: `${colors.danger}15`, borderLeft: `4px solid ${colors.danger}` }}>
+          <div className="rounded-[16px] p-4 mb-6 shadow-md animate-fade-in" style={{ backgroundColor: `${colors.danger}15`, borderLeft: `4px solid ${colors.danger}` }}>
             <div className="flex gap-3">
-              <span className="text-2xl animate-pulse">⚠️</span>
+              <span className="text-2xl inline-block animate-shake-danger">⚠️</span>
               <div>
                 <p className="text-sm font-bold mb-1" style={{ color: colors.text }}>Perlu Perhatian Ekstra!</p>
                 <p className="text-sm leading-relaxed" style={{ color: colors.textSecondary }}>
@@ -109,7 +120,7 @@ export function KitchenToolsScreen() {
         {/* Video section */}
         {tool.videoUrl && (
           <div className="rounded-[24px] overflow-hidden shadow-[0_4px_16px_rgba(0,0,0,0.08)] mb-6" style={{ backgroundColor: colors.cardBg }}>
-            <div className="p-4 flex items-center gap-3" style={{ background: `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})` }}>
+            <div className="p-4 flex items-center gap-3" style={{ backgroundColor: colors.primary }}>
               <div className="text-3xl">📹</div>
               <div>
                 <h3 className="font-bold text-white text-lg">Video Tutorial</h3>
@@ -145,7 +156,7 @@ export function KitchenToolsScreen() {
               <button
                 onClick={handlePlayAll}
                 className="px-6 py-3 rounded-full font-bold text-white shadow-lg hover:shadow-xl transition-all flex items-center gap-2 justify-center"
-                style={{ background: isPlayingAll ? colors.secondary : `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})` }}
+                style={{ backgroundColor: isPlayingAll ? colors.secondary : colors.primary }}
               >
                 {isPlayingAll ? (
                   <>
@@ -248,7 +259,7 @@ export function KitchenToolsScreen() {
         {/* Success message */}
         <div
           className="mt-8 text-center rounded-[24px] p-8 shadow-lg"
-          style={{ background: `linear-gradient(135deg, ${colors.primary}20, ${colors.secondary}20)` }}
+          style={{ backgroundColor: `${colors.primary}12` }}
         >
           <div className="text-6xl mb-4">✅</div>
           <p className="text-xl md:text-2xl font-bold mb-2" style={{ color: colors.primary }}>
@@ -260,7 +271,7 @@ export function KitchenToolsScreen() {
           <button
             onClick={() => navigate("/alat-dapur")}
             className="px-8 py-4 text-white rounded-full font-bold text-lg shadow-lg hover:scale-105 transition-all"
-            style={{ background: `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})` }}
+            style={{ backgroundColor: colors.primary }}
           >
             Kembali ke Daftar Alat 🏠
           </button>

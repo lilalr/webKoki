@@ -3,6 +3,8 @@ import { useNavigate, useParams } from "react-router";
 import { Check, ArrowLeft } from "lucide-react";
 import { getRecipeById } from "../data/recipes";
 import { useTheme } from "../context/ThemeContext";
+import { ChefMascot } from "./ChefMascot";
+
 
 export function ChecklistScreen() {
   const navigate = useNavigate();
@@ -72,41 +74,9 @@ export function ChecklistScreen() {
 
         {/* Top card with chef mascot + speech bubble */}
         <div className="rounded-2xl p-5 shadow-lg mb-6 flex items-start gap-4" style={{ backgroundColor: colors.cardBg }}>
-          {/* Chef mascot - small, encouraging pose with pointing finger */}
+          {/* Chef mascot - small, encouraging pose */}
           <div className="flex-shrink-0">
-            <svg
-              width="70"
-              height="70"
-              viewBox="0 0 200 200"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <ellipse cx="100" cy="60" rx="45" ry="15" fill="white" />
-              <rect x="65" y="55" width="70" height="30" fill="white" rx="5" />
-              <path
-                d="M 70 40 Q 70 25 85 25 Q 90 15 100 15 Q 110 15 115 25 Q 130 25 130 40 L 130 60 L 70 60 Z"
-                fill="white"
-              />
-              <circle cx="100" cy="110" r="50" fill="#FFE0B2" />
-              <circle cx="85" cy="105" r="8" fill="#1A1A1A" />
-              <circle cx="115" cy="105" r="8" fill="#1A1A1A" />
-              <circle cx="87" cy="103" r="3" fill="white" />
-              <circle cx="117" cy="103" r="3" fill="white" />
-              <path
-                d="M 80 120 Q 100 135 120 120"
-                stroke="#1A1A1A"
-                strokeWidth="3"
-                strokeLinecap="round"
-                fill="none"
-              />
-              <circle cx="70" cy="115" r="8" fill="#FF7043" opacity="0.3" />
-              <circle cx="130" cy="115" r="8" fill="#FF7043" opacity="0.3" />
-              <path d="M 60 140 L 60 180 Q 60 190 70 190 L 130 190 Q 140 190 140 180 L 140 140" fill="#4CAF50" />
-              <rect x="75" y="135" width="50" height="60" fill="white" opacity="0.9" rx="5" />
-              {/* Pointing arm */}
-              <ellipse cx="150" cy="140" rx="10" ry="20" fill="#FFE0B2" transform="rotate(30 150 140)" />
-              <circle cx="155" cy="125" r="8" fill="#FFE0B2" />
-            </svg>
+            <ChefMascot size="small" />
           </div>
 
           {/* Speech bubble */}
@@ -206,7 +176,7 @@ export function ChecklistScreen() {
                 allChecked ? "animate-pulse" : "opacity-50 cursor-not-allowed"
               }`}
               style={{
-                background: allChecked ? `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})` : colors.textSecondary,
+                backgroundColor: allChecked ? colors.primary : colors.textSecondary,
                 color: "white",
               }}
             >

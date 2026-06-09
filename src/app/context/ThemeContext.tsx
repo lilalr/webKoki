@@ -19,14 +19,14 @@ interface ThemeContextType {
 
 const themeConfigs = {
   fresh: {
-    primary: "#646B41", // Hijau tua (dari palette)
-    secondary: "#99AD7A", // Hijau sedang (dari palette)
-    accent: "#DCCCAC", // Krem/beige (dari palette)
-    background: "#FFF8EC", // Krem sangat terang (dari palette)
-    cardBg: "#FFFFFF", // Putih murni
-    text: "#212121", // Hitam untuk teks
-    textSecondary: "#646B41", // Hijau tua untuk teks sekunder
-    danger: "#F44336", // Merah untuk peringatan bahaya
+    primary: "#9AD872", // Hijau segar terang (dari palette Color Hunt)
+    secondary: "#FFA02E", // Oranye hangat (dari palette Color Hunt)
+    accent: "#FFEF91", // Krem/kuning lembut (dari palette Color Hunt)
+    background: "#FFFFFF", // Putih bersih
+    cardBg: "#FFFFFF", // Putih bersih
+    text: "#212121", // Hitam untuk teks jelas
+    textSecondary: "#555555", // Abu-abu gelap untuk penjelasan konsisten
+    danger: "#F44336", // Merah peringatan
   },
   pink: {
     primary: "#D6336C", // Pink tua/magenta (dari palette baru)

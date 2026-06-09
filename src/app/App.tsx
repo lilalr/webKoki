@@ -10,10 +10,12 @@ import { FavoritScreen } from "./components/FavoritScreen";
 import { ProfilScreen } from "./components/ProfilScreen";
 import { KitchenToolsListScreen } from "./components/KitchenToolsListScreen";
 import { KitchenToolsScreen } from "./components/KitchenToolsScreen";
+import { Toaster } from "./components/ui/sonner";
 
 export default function App() {
   return (
     <ThemeProvider>
+      <Toaster />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<SplashScreen />} />
