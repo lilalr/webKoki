@@ -100,7 +100,7 @@ export function CategoryScreen() {
   };
 
   return (
-    <div className="min-h-screen pb-20" style={{ background: colors.background }}>
+    <div className="min-h-screen pt-16 pb-8" style={{ background: colors.background }}>
       {/* Header with gradient */}
       <div
         className="px-4 md:px-8 pt-8 pb-8 rounded-b-[2rem] shadow-lg overflow-hidden"

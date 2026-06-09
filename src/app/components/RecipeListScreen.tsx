@@ -20,7 +20,7 @@ export function RecipeListScreen() {
   const categoryName = categoryNames[categoryId || ""] || "Resep";
 
   return (
-    <div className="min-h-screen pb-20" style={{ background: colors.background }}>
+    <div className="min-h-screen pt-16 pb-8" style={{ background: colors.background }}>
       <div
         className="px-4 md:px-8 lg:px-12 pt-8 pb-6 rounded-b-[2rem]"
         style={{ background: `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})` }}

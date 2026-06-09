@@ -51,7 +51,7 @@ export function RecipeDetail() {
   const hasDanger = recipe.steps.some(step => step.isDanger);
 
   return (
-    <div className="min-h-screen pb-20" style={{ background: colors.background }}>
+    <div className="min-h-screen pt-16 pb-32" style={{ background: colors.background }}>
       {/* Header */}
       <div
         className="px-4 md:px-8 lg:px-12 pt-8 pb-32 rounded-b-[2rem]"
@@ -416,7 +416,7 @@ export function RecipeDetail() {
         </div>
 
         {/* Sticky bottom CTA */}
-        <div className="fixed bottom-0 left-0 right-0 pt-4 pb-20 shadow-[0_-4px_16px_rgba(0,0,0,0.08)]" style={{ backgroundColor: colors.cardBg, borderTop: `1px solid ${colors.primary}30` }}>
+        <div className="fixed bottom-0 left-0 right-0 pt-4 pb-6 shadow-[0_-4px_16px_rgba(0,0,0,0.08)]" style={{ backgroundColor: colors.cardBg, borderTop: `1px solid ${colors.primary}30` }}>
           <div className="max-w-6xl mx-auto px-4 md:px-8 lg:px-12">
             {/* Main CTA button */}
             <button

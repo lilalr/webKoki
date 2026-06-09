@@ -1,54 +1,61 @@
-import { Home, BookOpen, Heart, User } from "lucide-react";
 import { useNavigate, useLocation } from "react-router";
 import { useTheme } from "../context/ThemeContext";
 
 export function BottomNav() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { colors } = useTheme();
+  const { colors, mode } = useTheme();
 
   const navItems = [
-    { icon: Home, label: "Home", path: "/", emoji: "🏠" },
-    { icon: BookOpen, label: "Modul", path: "/kategori", emoji: "📚" },
-    { icon: Heart, label: "Favorit", path: "/favorit", emoji: "❤️" },
-    { icon: User, label: "Profil", path: "/profil", emoji: "👤" },
+    { label: "Home", path: "/" },
+    { label: "Kategori", path: "/kategori" },
+
+    { label: "Favorit", path: "/favorit" },
+    { label: "Profil", path: "/profil" },
   ];
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-[#E0E0E0] px-4 py-2 flex justify-around items-center z-50 shadow-[0_-4px_16px_rgba(0,0,0,0.08)]">
-      {navItems.map((item) => {
-        const Icon = item.icon;
-        const isActive = location.pathname === item.path ||
-          (item.path === "/kategori" && location.pathname.startsWith("/kategori")) ||
-          (item.path === "/kategori" && location.pathname.startsWith("/resep")) ||
-          (item.path === "/kategori" && location.pathname.startsWith("/checklist")) ||
-          (item.path === "/kategori" && location.pathname.startsWith("/alat"));
+    <header 
+      className="fixed top-0 left-0 right-0 h-16 z-50 flex justify-between items-center px-6 md:px-12 border-b backdrop-blur-md transition-colors duration-300"
+      style={{ 
+        backgroundColor: mode === "dark" ? "rgba(15, 20, 25, 0.9)" : "rgba(255, 255, 255, 0.9)",
+        borderColor: mode === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)"
+      }}
+    >
+      {/* Brand logo */}
+      <div 
+        onClick={() => navigate("/")}
+        className="flex items-center gap-2 font-bold text-lg md:text-xl tracking-wider cursor-pointer select-none"
+        style={{ color: colors.primary }}
+      >
+        <span className="text-xl md:text-2xl animate-wiggle inline-block">🍳</span>
+        <span>WEB KOKI</span>
+      </div>
 
-        return (
-          <button
-            key={item.path}
-            onClick={() => navigate(item.path)}
-            className="flex flex-col items-center gap-1 px-3 py-1.5 rounded-2xl transition-all relative"
-          >
-            <div className="relative">
-              <span className="text-2xl">{item.emoji}</span>
-              {/* Dot indicator for active tab */}
-              {isActive && (
-                <div
-                  className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full"
-                  style={{ backgroundColor: colors.primary }}
-                />
-              )}
-            </div>
-            <span
-              className="text-xs font-semibold"
-              style={{ color: isActive ? colors.primary : colors.textSecondary }}
+      {/* Navigation links */}
+      <nav className="flex items-center gap-4 md:gap-8 overflow-x-auto py-2 scrollbar-none">
+        {navItems.map((item) => {
+          const isActive = location.pathname === item.path ||
+            (item.path === "/kategori" && location.pathname.startsWith("/kategori")) ||
+            (item.path === "/kategori" && location.pathname.startsWith("/resep")) ||
+            (item.path === "/kategori" && location.pathname.startsWith("/checklist")) ||
+            (item.path === "/alat-dapur" && location.pathname.startsWith("/alat"));
+
+          return (
+            <button
+              key={item.path}
+              onClick={() => navigate(item.path)}
+              className="hover:scale-105 transition-all text-xs md:text-sm font-bold tracking-wider uppercase cursor-pointer whitespace-nowrap pb-1 border-b-2"
+              style={{ 
+                color: isActive ? colors.primary : colors.textSecondary,
+                borderColor: isActive ? colors.primary : "transparent"
+              }}
             >
               {item.label}
-            </span>
-          </button>
-        );
-      })}
-    </div>
+            </button>
+          );
+        })}
+      </nav>
+    </header>
   );
 }

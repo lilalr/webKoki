@@ -9,7 +9,7 @@ export function KitchenToolsListScreen() {
   const { colors } = useTheme();
 
   return (
-    <div className="min-h-screen pb-20" style={{ background: colors.background }}>
+    <div className="min-h-screen pt-16 pb-8" style={{ background: colors.background }}>
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-12">
         {/* Header section */}
         <div className="mb-8 md:mb-12">
