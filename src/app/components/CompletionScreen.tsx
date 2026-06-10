@@ -1,8 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router";
 import { getRecipeById } from "../data/recipes";
 import { useTheme } from "../context/ThemeContext";
 import { addCompletedRecipe } from "../utils/completedRecipes";
+import chefGirl from "../../imports/chef_girl_celebrating.png";
+import chefBoy from "../../imports/chef_boy_celebrating.png";
 
 export function CompletionScreen() {
   const navigate = useNavigate();
@@ -10,6 +12,14 @@ export function CompletionScreen() {
   const { colors } = useTheme();
   const recipeId = searchParams.get("recipeId");
   const recipe = recipeId ? getRecipeById(recipeId) : null;
+  const [mascotGender, setMascotGender] = useState("perempuan");
+
+  useEffect(() => {
+    const saved = localStorage.getItem("mascot-gender");
+    if (saved) {
+      setMascotGender(saved);
+    }
+  }, []);
 
   useEffect(() => {
     if (recipeId) {
@@ -78,60 +88,12 @@ export function CompletionScreen() {
           <div className="absolute top-10 -left-4 text-xl animate-bounce">⭐</div>
           <div className="absolute top-10 -right-4 text-xl animate-bounce delay-100">⭐</div>
 
-          {/* Chef with celebration pose - arms up, party hat */}
-          <svg
-            width="180"
-            height="180"
-            viewBox="0 0 200 200"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            {/* Party hat */}
-            <path d="M 100 10 L 70 50 L 130 50 Z" fill="#FF7043" />
-            <ellipse cx="100" cy="50" rx="30" ry="8" fill="#FFD600" />
-            <circle cx="100" cy="10" r="6" fill="#FFD600" />
-
-            {/* Chef hat (under party hat) */}
-            <ellipse cx="100" cy="65" rx="40" ry="12" fill="white" />
-            <rect x="70" y="60" width="60" height="25" fill="white" rx="5" />
-
-            {/* Face - VERY happy */}
-            <circle cx="100" cy="110" r="45" fill="#FFE0B2" />
-
-            {/* Eyes - wide and happy */}
-            <circle cx="87" cy="105" r="7" fill="#1A1A1A" />
-            <circle cx="113" cy="105" r="7" fill="#1A1A1A" />
-            <circle cx="89" cy="103" r="3" fill="white" />
-            <circle cx="115" cy="103" r="3" fill="white" />
-
-            {/* HUGE smile */}
-            <path
-              d="M 75 115 Q 100 140 125 115"
-              stroke="#1A1A1A"
-              strokeWidth="4"
-              strokeLinecap="round"
-              fill="none"
-            />
-            <path
-              d="M 80 120 Q 100 135 120 120"
-              fill="#FF7043"
-              opacity="0.3"
-            />
-
-            {/* Rosy cheeks */}
-            <circle cx="68" cy="115" r="10" fill="#FF7043" opacity="0.4" />
-            <circle cx="132" cy="115" r="10" fill="#FF7043" opacity="0.4" />
-
-            {/* Body with apron */}
-            <path d="M 60 140 L 60 180 Q 60 190 70 190 L 130 190 Q 140 190 140 180 L 140 140" fill="#4CAF50" />
-            <rect x="75" y="135" width="50" height="60" fill="white" opacity="0.9" rx="5" />
-
-            {/* Arms UP - celebration! */}
-            <ellipse cx="35" cy="120" rx="12" ry="28" fill="#FFE0B2" transform="rotate(-40 35 120)" />
-            <ellipse cx="165" cy="120" rx="12" ry="28" fill="#FFE0B2" transform="rotate(40 165 120)" />
-            <circle cx="25" cy="95" r="11" fill="#FFE0B2" />
-            <circle cx="175" cy="95" r="11" fill="#FFE0B2" />
-          </svg>
+          {/* Chef with celebration pose */}
+          <img
+            src={mascotGender === "laki-laki" ? chefBoy : chefGirl}
+            alt="Chef Mascot"
+            className="w-44 h-44 object-contain animate-bounce drop-shadow-xl"
+          />
         </div>
 
         {/* Title */}

@@ -1,5 +1,5 @@
 import chefGirl from "../../imports/chef_girl_transparent_v2.png";
-import chefBoy from "../../imports/chef_boy_transparent.png";
+import chefBoy from "../../imports/chef_boy_standing.png";
 import { useState, useEffect } from "react";
 
 interface ChefMascotProps {

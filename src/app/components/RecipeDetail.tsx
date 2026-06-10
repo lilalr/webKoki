@@ -1,15 +1,16 @@
-import { ArrowLeft, Bookmark, Check, Play, ChevronDown, ChevronUp, Volume2, Settings, Pause, AlertTriangle } from "lucide-react";
+import { ArrowLeft, Bookmark, Check, AlertTriangle, Lightbulb } from "lucide-react";
 import { useNavigate, useParams } from "react-router";
 import { useState } from "react";
 import { getRecipeById } from "../data/recipes";
 import { BottomNav } from "./BottomNav";
 import { useTheme } from "../context/ThemeContext";
 import { addFavorite, removeFavorite, isFavorite } from "../utils/favorites";
+import { substitutions } from "../data/substitutions";
 
 export function RecipeDetail() {
   const navigate = useNavigate();
   const { recipeId } = useParams();
-  const { colors } = useTheme();
+  const { colors, mode } = useTheme();
   const [isBookmarked, setIsBookmarked] = useState(() => isFavorite(recipeId || ""));
 
   const handleToggleBookmark = () => {
@@ -22,13 +23,8 @@ export function RecipeDetail() {
     }
   };
   const [checkedIngredients, setCheckedIngredients] = useState<boolean[]>([]);
-  const [expandedCuttingCard, setExpandedCuttingCard] = useState<number | null>(null);
   const [showAlternatives, setShowAlternatives] = useState<number | null>(null);
-  const [playingStep, setPlayingStep] = useState<number | null>(null);
-  const [playingAll, setPlayingAll] = useState(false);
-  const [voiceSpeed, setVoiceSpeed] = useState<0.75 | 1 | 1.25>(1);
-  const [showVoiceSettings, setShowVoiceSettings] = useState(false);
-  const [activeVideoIndex, setActiveVideoIndex] = useState<number | null>(null);
+  const allChecked = checkedIngredients.length > 0 && checkedIngredients.every(Boolean);
 
 
   const recipe = getRecipeById(recipeId || "");
@@ -212,30 +208,37 @@ export function RecipeDetail() {
 
         {/* Bahan-bahan section */}
         <div className="mb-8">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-3">
             <h2 className="text-xl md:text-2xl font-bold" style={{ color: colors.text, fontFamily: "'Fredoka', sans-serif" }}>🛒 Bahan-bahan</h2>
             <div className="px-4 py-1.5 rounded-full" style={{ backgroundColor: `${colors.primary}15` }}>
               <span className="text-xs md:text-sm font-semibold" style={{ color: colors.primary }}>Semua ada di dapur rumah!</span>
             </div>
           </div>
 
+          <p className="text-xs md:text-sm font-semibold mb-4 text-left leading-relaxed" style={{ color: colors.textSecondary }}>
+            💡 <span className="font-bold" style={{ color: colors.secondary }}>Penting:</span> Centang semua bahan di bawah ini terlebih dahulu ya untuk membuka tombol <span className="font-bold" style={{ color: colors.primary }}>"Mulai Masak!"</span>.
+          </p>
+
           <div className="space-y-3">
             {recipe.ingredients.map((ingredient, index) => {
-              // Alternative ingredients mapping
-              const alternatives: Record<string, string> = {
-                "Roti tawar": "Roti gandum / Roti burger",
-                "Telur": "Telur puyuh (3-4 butir)",
-                "Keju": "Keju parut / Keju cheddar",
-                "Mentega": "Margarin / Minyak zaitun",
-                "Susu": "Susu kental manis / Santan",
-                "Tomat": "Saus tomat",
-                "Selada": "Kubis / Sawi",
-                "Mayones": "Greek yogurt",
-                "Bawang bombay": "Bawang merah (lebih banyak)",
-                "Paprika": "Cabai merah (tidak pedas)"
+              // Lookup in substitutions database using helper function
+              const getAlternativeForIngredient = (ingName: string) => {
+                const nameLower = ingName.toLowerCase().trim();
+                // 1. Exact match
+                if (substitutions[nameLower]) {
+                  return substitutions[nameLower];
+                }
+                // 2. Substring match (e.g. "roti tawar kupas" matches "roti tawar")
+                const keys = Object.keys(substitutions).sort((a, b) => b.length - a.length);
+                for (const key of keys) {
+                  if (nameLower.includes(key)) {
+                    return substitutions[key];
+                  }
+                }
+                return null;
               };
 
-              const hasAlternative = alternatives[ingredient.name];
+              const alternative = getAlternativeForIngredient(ingredient.name) || "Gunakan bahan sejenis yang ada di dapurmu ATAU lewati saja jika tidak terlalu penting.";
               const isChecked = checkedIngredients[index];
 
               return (
@@ -275,259 +278,39 @@ export function RecipeDetail() {
                       </span>
                       <span className="text-xs md:text-sm font-medium" style={{ color: colors.textSecondary }}>{ingredient.amount}</span>
                     </button>
-                    {hasAlternative && (
-                      <button
-                        onClick={() => setShowAlternatives(showAlternatives === index ? null : index)}
-                        className="px-3 py-1.5 rounded-full text-xs font-semibold active:scale-95 transition-all cursor-pointer"
-                        style={{ backgroundColor: `${colors.secondary}15`, color: colors.secondary }}
-                      >
-                        {showAlternatives === index ? "Tutup" : "Gak ada?"}
-                      </button>
-                    )}
+                    <button
+                      onClick={() => setShowAlternatives(showAlternatives === index ? null : index)}
+                      className="p-2 rounded-full transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer shadow-sm flex items-center justify-center flex-shrink-0"
+                      style={{ 
+                        backgroundColor: showAlternatives === index ? `${colors.accent}30` : `${colors.primary}10`,
+                        color: showAlternatives === index ? colors.accent : colors.primary,
+                      }}
+                      title="Lihat Alternatif Bahan"
+                    >
+                      <Lightbulb size={18} className={showAlternatives === index ? "fill-current" : ""} />
+                    </button>
                   </div>
 
-                  {/* Alternatives dropdown */}
-                  {hasAlternative && showAlternatives === index && (
+                  {/* Alternatives card with slide-down animation */}
+                  {showAlternatives === index && (
                     <div
-                      className="rounded-2xl p-4 ml-10 shadow-inner border-l-4 transition-all duration-300"
+                      className="rounded-2xl p-4 ml-10 border-2 shadow-md flex gap-3 items-start animate-slide-down transition-all duration-300"
                       style={{ 
-                        backgroundColor: `${colors.secondary}10`, 
-                        borderColor: colors.secondary 
+                        backgroundColor: `${colors.accent}12`, 
+                        borderColor: colors.primary 
                       }}
                     >
-                      <p className="text-xs font-bold mb-1 uppercase tracking-wide" style={{ color: colors.secondary }}>
-                        💡 Bisa diganti dengan:
-                      </p>
-                      <p className="text-sm font-semibold" style={{ color: colors.text }}>
-                        {alternatives[ingredient.name]}
-                      </p>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Langkah Memasak section */}
-        <div className="mb-32">
-          <div className="mb-6">
-            <h2 className="text-xl font-bold mb-4" style={{ color: colors.text }}>👨‍🍳 Cara Masak</h2>
-
-            {/* Audio controls card */}
-            <div className="rounded-2xl p-4 shadow-lg mb-4" style={{ backgroundColor: colors.cardBg }}>
-              <div className="flex items-center justify-between mb-3">
-                <button
-                  onClick={() => setPlayingAll(!playingAll)}
-                  className="flex items-center gap-2 px-4 py-2 rounded-full font-semibold text-white shadow-md"
-                  style={{ backgroundColor: colors.primary }}
-                >
-                  {playingAll ? (
-                    <>
-                      <Pause size={18} />
-                      <span>Berhenti</span>
-                    </>
-                  ) : (
-                    <>
-                      <Volume2 size={18} />
-                      <span>Dengarkan Semua</span>
-                    </>
-                  )}
-                </button>
-
-                <button
-                  onClick={() => setShowVoiceSettings(!showVoiceSettings)}
-                  className="w-10 h-10 rounded-full flex items-center justify-center"
-                  style={{ backgroundColor: `${colors.primary}20` }}
-                >
-                  <Settings size={20} style={{ color: colors.primary }} />
-                </button>
-              </div>
-
-              {/* Voice settings expandable */}
-              {showVoiceSettings && (
-                <div className="pt-3 border-t space-y-3" style={{ borderColor: `${colors.primary}30` }}>
-                  <div>
-                    <p className="text-sm font-semibold mb-2" style={{ color: colors.text }}>
-                      Kecepatan Suara
-                    </p>
-                    <div className="flex gap-2">
-                      {[
-                        { speed: 0.75 as const, label: "🐢 Lambat" },
-                        { speed: 1 as const, label: "▶️ Normal" },
-                        { speed: 1.25 as const, label: "⚡ Cepat" }
-                      ].map(({ speed, label }) => (
-                        <button
-                          key={speed}
-                          onClick={() => setVoiceSpeed(speed)}
-                          className="flex-1 px-3 py-2 rounded-xl text-sm font-semibold transition-all"
-                          style={{
-                            backgroundColor: voiceSpeed === speed ? colors.primary : `${colors.primary}15`,
-                            color: voiceSpeed === speed ? "white" : colors.primary
-                          }}
-                        >
-                          {label}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-
-          <div className="space-y-6 relative">
-            {recipe.steps.map((step, index) => {
-              // Detect if step involves cutting based on keywords
-              const isCuttingStep = step.text.toLowerCase().includes('iris') ||
-                                   step.text.toLowerCase().includes('potong') ||
-                                   step.text.toLowerCase().includes('cincang');
-
-              // Steps that need video demonstration (cutting, stove lighting, etc)
-              const needsVideo = index === 1 || isCuttingStep;
-              const isActiveStep = playingStep === index;
-
-              return (
-                <div key={index} className="relative flex gap-4">
-                  {/* Left: step number circle + connecting line */}
-                  <div className="flex flex-col items-center">
-                    <div
-                      className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 shadow-md transition-all duration-300 z-10 ${
-                        isActiveStep ? 'scale-110 ring-4' : ''
-                      }`}
-                      style={{ 
-                        backgroundColor: colors.primary,
-                        // @ts-ignore
-                        '--tw-ring-color': `${colors.primary}40`,
-                        boxShadow: isActiveStep ? `0 0 15px ${colors.primary}` : 'none'
-                      }}
-                    >
-                      <span className="text-white font-bold">{index + 1}</span>
-                    </div>
-                    {index < recipe.steps.length - 1 && (
-                      <div
-                        className="w-0.5 flex-1 border-l-2 border-dashed my-1 min-h-[50px] opacity-40"
-                        style={{ borderColor: colors.primary }}
-                      />
-                    )}
-                  </div>
-
-                  {/* Right: step card */}
-                  <div className="flex-1 space-y-2">
-                    <div 
-                      className="rounded-[24px] p-5 shadow-[0_8px_20px_rgba(0,0,0,0.04)] border-2 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5" 
-                      style={{ 
-                        backgroundColor: colors.cardBg,
-                        borderColor: isActiveStep ? colors.primary : 'transparent',
-                        boxShadow: isActiveStep ? `0 12px 25px -8px ${colors.primary}30` : ''
-                      }}
-                    >
-                      <div className="flex items-start justify-between gap-3 mb-3">
-                        <p className="text-sm md:text-base leading-relaxed flex-1 font-medium" style={{ color: colors.text }}>
-                          {step.text}
+                      <Lightbulb size={20} className="flex-shrink-0 mt-0.5" style={{ color: colors.secondary, fill: colors.secondary }} />
+                      <div className="flex-1">
+                        <p className="text-sm font-semibold text-left" style={{ color: colors.text }}>
+                          Tidak punya <span className="font-bold">{ingredient.name}</span>? Coba ini:
                         </p>
-                        {/* Audio button per step */}
-                        <button
-                          onClick={() => setPlayingStep(playingStep === index ? null : index)}
-                          className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 shadow-md transition-all active:scale-90 cursor-pointer"
-                          style={{
-                            backgroundColor: playingStep === index ? colors.primary : `${colors.primary}15`
-                          }}
-                        >
-                          {playingStep === index ? (
-                            <Pause size={16} className="text-white" />
-                          ) : (
-                            <Volume2 size={16} style={{ color: colors.primary }} />
-                          )}
-                        </button>
-                      </div>
-
-                      {/* Pills and thumbnail */}
-                      <div className="flex items-start justify-between gap-2">
-                        <div className="flex flex-col gap-2 flex-1">
-                          <div className="flex gap-2 flex-wrap">
-                            {step.isDanger && (
-                              <div className="px-3 py-1 rounded-full animate-pulse flex items-center gap-1" style={{ backgroundColor: `${colors.danger}15` }}>
-                                <span className="text-xs font-bold" style={{ color: colors.danger }}>⚠️ Hati-hati!</span>
-                              </div>
-                            )}
-
-                            {isCuttingStep && (
-                              <button
-                                onClick={() => setExpandedCuttingCard(expandedCuttingCard === index ? null : index)}
-                                className="px-3 py-1 rounded-full transition-all flex items-center gap-1 shadow-sm cursor-pointer"
-                                style={{ backgroundColor: `${colors.secondary}15` }}
-                              >
-                                <span className="text-xs font-bold" style={{ color: colors.secondary }}>✂️ Teknik Potong</span>
-                                {expandedCuttingCard === index ? (
-                                  <ChevronUp size={12} style={{ color: colors.secondary }} />
-                                ) : (
-                                  <ChevronDown size={12} style={{ color: colors.secondary }} />
-                                )}
-                              </button>
-                            )}
-                          </div>
-
-                          {/* Video thumbnail - 16:9 ratio */}
-                          {needsVideo && (
-                            <button
-                              className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-md group mt-2 cursor-pointer transition-transform duration-300 hover:scale-[1.01]"
-                              style={{ backgroundColor: colors.primary }}
-                            >
-                              <div className="absolute inset-0 flex items-center justify-center">
-                                <span className="text-5xl">{recipe.emoji}</span>
-                              </div>
-                              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/35 transition-all" />
-                              <div className="absolute inset-0 flex flex-col items-center justify-center">
-                                <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-all">
-                                  <Play size={20} style={{ color: colors.primary }} className="ml-1" />
-                                </div>
-                                <p className="text-xs text-white font-bold mt-2.5 drop-shadow-md">▶ Tonton Video Tutorial</p>
-                              </div>
-                            </button>
-                          )}
-                        </div>
+                        <p className="text-sm font-bold mt-1 leading-relaxed text-left" style={{ color: colors.primary }}>
+                          {alternative}
+                        </p>
                       </div>
                     </div>
-
-                    {/* Cutting technique expandable card */}
-                    {isCuttingStep && expandedCuttingCard === index && (
-                      <div className="rounded-[20px] p-5 shadow-lg border-l-4 transition-all duration-300" style={{ backgroundColor: `${colors.secondary}10`, borderColor: colors.secondary }}>
-                        <div className="flex items-start gap-3">
-                          <div className="flex-1">
-                            <h4 className="text-sm font-bold mb-2" style={{ color: colors.secondary, fontFamily: "'Fredoka', sans-serif" }}>✂️ Teknik Potong: Iris Tipis</h4>
-                            <p className="text-sm leading-relaxed mb-4 font-medium" style={{ color: colors.text }}>
-                              Tekuk jari seperti cakar kucing, ujung kuku menempel pada bahan. Sisi pisau menyentuh buku jari agar aman.
-                            </p>
-
-                            {/* Mini diagram - finger position */}
-                            <div className="rounded-2xl p-4 flex items-center justify-center shadow-inner" style={{ backgroundColor: colors.cardBg }}>
-                              <svg width="120" height="60" viewBox="0 0 120 60" fill="none">
-                                {/* Cutting board */}
-                                <rect x="10" y="40" width="100" height="10" fill="#CD7F32" rx="2"/>
-
-                                {/* Ingredient/food */}
-                                <rect x="35" y="32" width="25" height="8" fill="#FFE0B2" rx="2"/>
-
-                                {/* Hand/fingers (simplified) */}
-                                <ellipse cx="48" cy="24" rx="14" ry="7" fill="#F5CBA7"/>
-                                <rect x="44" y="16" width="3" height="8" fill="#E59866" rx="1.5"/>
-                                <rect x="48" y="16" width="3" height="8" fill="#E59866" rx="1.5"/>
-
-                                {/* Knife */}
-                                <rect x="70" y="18" width="3" height="26" fill="#7F8C8D" rx="1"/>
-                                <path d="M 66 18 L 77 18 L 71 12 Z" fill="#BDC3C7"/>
-
-                                {/* Safety indicator arrow */}
-                                <path d="M 55 14 L 60 14 L 58 12 M 60 14 L 58 16" stroke="#2E7D32" strokeWidth="1.5" fill="none"/>
-                                <text x="62" y="16" fontSize="7" fill="#2E7D32" fontWeight="bold">Aman!</text>
-                              </svg>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
+                  )}
                 </div>
               );
             })}
@@ -539,14 +322,19 @@ export function RecipeDetail() {
           <div className="max-w-6xl mx-auto px-6 md:px-12">
             {/* Main CTA button */}
             <button
-              onClick={() => navigate(`/checklist/${recipe.id}`)}
-              className="w-full py-4 text-white rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform active:scale-95 hover:scale-[1.01] cursor-pointer"
+              onClick={() => navigate(`/masak/${recipe.id}`)}
+              disabled={!allChecked}
+              className={`w-full py-4 text-white rounded-full font-bold text-lg shadow-lg transition-all duration-300 transform active:scale-95 hover:scale-[1.01] cursor-pointer flex items-center justify-center gap-2 ${
+                allChecked ? "animate-pulse-scale" : "opacity-60"
+              }`}
               style={{ 
-                backgroundColor: colors.primary,
-                fontFamily: "'Fredoka', sans-serif"
+                backgroundColor: allChecked ? colors.primary : (mode === "dark" ? "#374151" : "#D1D5DB"),
+                color: allChecked ? "#FFFFFF" : (mode === "dark" ? "#9CA3AF" : "#6B7280"),
+                fontFamily: "'Fredoka', sans-serif",
+                cursor: allChecked ? "pointer" : "not-allowed"
               }}
             >
-              Mulai Masak! 🍴
+              {allChecked ? "Mulai Masak! 🍴" : "Ceklis Semua Bahan Dulu Ya! 🛒"}
             </button>
           </div>
         </div>

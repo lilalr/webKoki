@@ -1,4 +1,4 @@
-import { ArrowLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router";
 import { BottomNav } from "./BottomNav";
 import { kitchenTools } from "../data/recipes";
@@ -10,71 +10,83 @@ export function KitchenToolsListScreen() {
 
   return (
     <div className="min-h-screen pt-16 pb-8" style={{ background: colors.background }}>
-      <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-12">
-        {/* Header section */}
-        <div className="mb-8 md:mb-12">
+      {/* Header Banner with gradient and decorative blobs */}
+      <div
+        className="px-6 md:px-12 pt-8 pb-10 rounded-b-[2.5rem] shadow-xl overflow-hidden relative"
+        style={{ backgroundColor: colors.primary }}
+      >
+        {/* Decorative background blobs */}
+        <div className="absolute right-[-30px] top-[-30px] w-48 h-48 rounded-full bg-white/10 blur-2xl pointer-events-none" />
+        <div className="absolute left-[-20px] bottom-[-40px] w-36 h-36 rounded-full bg-black/5 blur-xl pointer-events-none" />
+
+        <div className="max-w-6xl mx-auto relative z-10">
           <div className="flex items-center gap-4 mb-4">
             <button
               onClick={() => navigate("/kategori")}
-              className="w-12 h-12 rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition-all"
-              style={{ backgroundColor: colors.cardBg }}
+              className="w-11 h-11 bg-white/20 hover:bg-white/30 backdrop-blur-md rounded-full flex items-center justify-center transition-all duration-200 active:scale-90 cursor-pointer shadow-md"
             >
-              <ArrowLeft size={24} style={{ color: colors.primary }} />
+              <ArrowLeft size={22} className="text-white" />
             </button>
-            <div className="flex-1">
-              <h1 className="text-3xl md:text-5xl font-bold" style={{ color: colors.text }}>
-                Pengenalan Alat Dapur
-              </h1>
-            </div>
+            <h1 className="text-2xl md:text-4xl font-bold text-white drop-shadow-md" style={{ fontFamily: "'Fredoka', sans-serif" }}>
+              Pengenalan Alat Dapur
+            </h1>
           </div>
-          <p className="text-base md:text-lg ml-16 max-w-3xl leading-relaxed" style={{ color: colors.textSecondary }}>
+          <p className="text-white/90 text-sm md:text-lg font-medium ml-15 max-w-3xl leading-relaxed">
             Edukasi mengenai alat-alat dapur dasar sebelum memulai memasak. Pelajari cara menggunakan alat dapur dengan aman!
           </p>
         </div>
+      </div>
 
-        {/* Tools grid - responsive 2 columns on desktop */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-          {kitchenTools.map((tool) => (
-            <button
-              key={tool.id}
-              onClick={() => navigate(`/alat/${tool.id}`)}
-              className="w-full rounded-[24px] p-6 shadow-[0_4px_16px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] hover:scale-[1.02] transition-all"
-              style={{ backgroundColor: colors.cardBg }}
+      {/* Tools grid - responsive 2 columns on desktop */}
+      <div className="px-6 md:px-12 max-w-6xl mx-auto mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+        {kitchenTools.map((tool) => (
+          <button
+            key={tool.id}
+            onClick={() => navigate(`/alat/${tool.id}`)}
+            className="w-full rounded-[24px] p-5 shadow-[0_8px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] border border-transparent hover:border-[#2E7D32]20 hover:-translate-y-1.5 transition-all duration-300 flex items-center gap-4 text-left group cursor-pointer"
+            style={{ backgroundColor: colors.cardBg }}
+          >
+            {/* Tool Emoji Icon */}
+            <div
+              className="w-16 h-16 rounded-[20px] flex items-center justify-center text-3xl shadow-md flex-shrink-0 transition-transform duration-300 group-hover:scale-105"
+              style={{ backgroundColor: colors.primary }}
             >
-              <div className="flex items-center gap-4">
-                {/* Icon */}
-                <div
-                  className="w-[80px] h-[80px] rounded-[20px] flex items-center justify-center text-5xl flex-shrink-0 shadow-md"
-                  style={{ backgroundColor: colors.primary }}
-                >
-                  {tool.emoji}
+              {tool.emoji}
+            </div>
+
+            {/* Tool Title & Danger Indicator */}
+            <div className="flex-1 min-w-0">
+              <h3 className="font-bold text-lg text-[#1A1A1A] truncate tracking-wide" style={{ color: colors.text, fontFamily: "'Fredoka', sans-serif" }}>
+                {tool.title}
+              </h3>
+              {tool.isDanger && (
+                <div className="flex items-center gap-1.5 mt-2 px-2.5 py-0.5 rounded-full w-fit" style={{ backgroundColor: `${colors.danger}15` }}>
+                  <div className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: colors.danger }}></div>
+                  <span className="text-[10px] font-bold" style={{ color: colors.danger }}>
+                    Perlu Perhatian Ekstra
+                  </span>
                 </div>
+              )}
+            </div>
 
-                {/* Content */}
-                <div className="flex-1 text-left">
-                  <h3 className="text-xl md:text-2xl font-bold mb-2" style={{ color: colors.text }}>
-                    {tool.title}
-                  </h3>
-
-                  {tool.isDanger && (
-                    <div className="flex items-center gap-2 px-3 py-1 rounded-full inline-flex" style={{ backgroundColor: `${colors.danger}20` }}>
-                      <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: colors.danger }}></div>
-                      <span className="text-xs font-semibold" style={{ color: colors.danger }}>
-                        Perlu Perhatian Ekstra
-                      </span>
-                    </div>
-                  )}
-                </div>
-
-                {/* Arrow */}
-                <ChevronRight size={24} className="flex-shrink-0" style={{ color: colors.primary }} />
-              </div>
-            </button>
-          ))}
-        </div>
+            {/* Interactive Navigation Arrow */}
+            <div
+              className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 shadow-sm"
+              style={{ backgroundColor: `${colors.primary}15` }}
+            >
+              <span 
+                className="text-lg font-bold transition-transform duration-300 group-hover:translate-x-1.5"
+                style={{ color: colors.primary }}
+              >
+                →
+              </span>
+            </div>
+          </button>
+        ))}
       </div>
 
       <BottomNav />
     </div>
   );
 }
+

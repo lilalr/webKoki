@@ -5,7 +5,8 @@ import { BottomNav } from "./BottomNav";
 import { recipes, kitchenTools } from "../data/recipes";
 import { useTheme } from "../context/ThemeContext";
 import chefGirl from "../../imports/chef_girl_transparent_v2.png";
-import chefBoy from "../../imports/chef_boy_transparent.png";
+import chefBoy from "../../imports/chef_boy_standing.png";
+
 
 
 export function CategoryScreen() {

@@ -4,7 +4,7 @@ import { SplashScreen } from "./components/SplashScreen";
 import { CategoryScreen } from "./components/CategoryScreen";
 import { RecipeListScreen } from "./components/RecipeListScreen";
 import { RecipeDetail } from "./components/RecipeDetail";
-import { ChecklistScreen } from "./components/ChecklistScreen";
+import { CookingScreen } from "./components/CookingScreen";
 import { CompletionScreen } from "./components/CompletionScreen";
 import { FavoritScreen } from "./components/FavoritScreen";
 import { ProfilScreen } from "./components/ProfilScreen";
@@ -22,7 +22,7 @@ export default function App() {
           <Route path="/kategori" element={<CategoryScreen />} />
           <Route path="/kategori/:categoryId" element={<RecipeListScreen />} />
           <Route path="/resep/:recipeId" element={<RecipeDetail />} />
-          <Route path="/checklist/:recipeId" element={<ChecklistScreen />} />
+          <Route path="/masak/:recipeId" element={<CookingScreen />} />
           <Route path="/selesai" element={<CompletionScreen />} />
           <Route path="/favorit" element={<FavoritScreen />} />
           <Route path="/profil" element={<ProfilScreen />} />

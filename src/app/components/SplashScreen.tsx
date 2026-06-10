@@ -2,11 +2,12 @@ import { useNavigate } from "react-router";
 import { useTheme } from "../context/ThemeContext";
 import chefImage from "../../imports/chef_girl_transparent_v2.png";
 import chefBoy from "../../imports/chef_boy_transparent.png";
+import chefHat from "../../imports/chef_hat.png";
 import { useState, useEffect } from "react";
 
 export function SplashScreen() {
   const navigate = useNavigate();
-  const { colors } = useTheme();
+  const { colors, mode } = useTheme();
   const [mascot, setMascot] = useState("perempuan");
 
   useEffect(() => {
@@ -130,7 +131,7 @@ export function SplashScreen() {
             className="px-8 py-3 text-white rounded-full font-bold text-base md:text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer inline-flex items-center gap-2 select-none"
             style={{ backgroundColor: colors.primary }}
           >
-            AYO MASAK! 🚀
+            AYO MASAK! 🍳
           </button>
 
           <p 
@@ -143,10 +144,25 @@ export function SplashScreen() {
         </div>
 
         {/* Footer Page Indicators */}
-        <div className="flex items-center gap-2 mt-8 lg:mt-0">
-          <span className="w-2.5 h-2.5 rounded-full shadow-sm" style={{ backgroundColor: colors.primary, opacity: 1 }}></span>
-          <span className="w-2.5 h-2.5 rounded-full shadow-sm" style={{ backgroundColor: colors.primary, opacity: 0.4 }}></span>
-          <span className="w-2.5 h-2.5 rounded-full shadow-sm" style={{ backgroundColor: colors.primary, opacity: 0.4 }}></span>
+        <div className="flex items-center gap-4 mt-8 lg:mt-0 select-none pointer-events-none">
+          <img 
+            src={chefHat} 
+            alt="Page 1" 
+            className="w-13 h-13 object-contain" 
+            style={{ filter: mode === 'dark' ? 'none' : 'drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))' }} 
+          />
+          <img 
+            src={chefHat} 
+            alt="Page 2" 
+            className="w-13 h-13 object-contain" 
+            style={{ filter: mode === 'dark' ? 'none' : 'drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))' }} 
+          />
+          <img 
+            src={chefHat} 
+            alt="Page 3" 
+            className="w-13 h-13 object-contain" 
+            style={{ filter: mode === 'dark' ? 'none' : 'drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))' }} 
+          />
         </div>
       </div>
 

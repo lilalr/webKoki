@@ -64,6 +64,15 @@
   }
 }
 
+@keyframes pulse-scale {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.025);
+  }
+}
+
 @keyframes wave-hand {
   0%, 100% { transform: rotate(0deg); }
   20% { transform: rotate(15deg); }
@@ -101,6 +110,10 @@
   .animate-wave-hand {
     animation: wave-hand 2.5s ease-in-out infinite;
     transform-origin: 70% 70%;
+  }
+
+  .animate-pulse-scale {
+    animation: pulse-scale 2s ease-in-out infinite;
   }
 
   .transition-all-300 {

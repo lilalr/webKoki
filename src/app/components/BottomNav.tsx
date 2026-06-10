@@ -35,12 +35,12 @@ export function BottomNav() {
       </div>
 
       {/* Navigation links */}
-      <nav className="flex items-center gap-2 md:gap-4 py-2">
+      <nav className="flex items-center gap-2 md:gap-4 py-2 overflow-x-auto scrollbar-none">
         {navItems.map((item) => {
           const isActive = location.pathname === item.path ||
             (item.path === "/kategori" && location.pathname.startsWith("/kategori")) ||
             (item.path === "/kategori" && location.pathname.startsWith("/resep")) ||
-            (item.path === "/kategori" && location.pathname.startsWith("/checklist")) ||
+            (item.path === "/kategori" && location.pathname.startsWith("/masak")) ||
             (item.path === "/alat-dapur" && location.pathname.startsWith("/alat"));
 
           return (
