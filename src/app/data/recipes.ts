@@ -629,6 +629,7 @@ export const recipes: Recipe[] = [
     emoji: "🍞",
     time: "5 menit",
     difficulty: "Mudah",
+    image: "/images/roti oles mentega gula.jpg",
     ingredients: [
       { name: "Roti tawar", amount: "2 lembar" },
       { name: "Mentega / margarin", amount: "1 sdm" },
@@ -651,6 +652,7 @@ export const recipes: Recipe[] = [
     emoji: "🥪",
     time: "8 menit",
     difficulty: "Mudah",
+    image: "/images/roti bakar.jpg",
     ingredients: [
       { name: "Roti tawar", amount: "2 lembar" },
       { name: "Selai cokelat / stroberi", amount: "1 sdm" },
@@ -673,6 +675,7 @@ export const recipes: Recipe[] = [
     emoji: "🍳",
     time: "15 menit",
     difficulty: "Mudah",
+    image: "/images/orak arik telur wortel buncis.jpg",
     ingredients: [
       { name: "Telur ayam", amount: "2 butir" },
       { name: "Wortel kecil", amount: "1 buah (potong dadu kecil)" },
@@ -698,6 +701,7 @@ export const recipes: Recipe[] = [
     emoji: "🥬",
     time: "15 menit",
     difficulty: "Mudah",
+    image: "/images/tumis sawi putih bakso.jpg",
     ingredients: [
       { name: "Sawi putih", amount: "5 lembar (potong-potong)" },
       { name: "Bakso sapi", amount: "5 buah (iris tipis)" },
@@ -721,6 +725,7 @@ export const recipes: Recipe[] = [
     emoji: "🍲",
     time: "15 menit",
     difficulty: "Mudah",
+    image: "/images/tomat telur kuah segar.jpg",
     ingredients: [
       { name: "Tomat merah matang", amount: "2 buah (potong kasar)" },
       { name: "Telur ayam", amount: "2 butir (kocok lepas)" },
@@ -745,6 +750,7 @@ export const recipes: Recipe[] = [
     emoji: "🥔",
     time: "25 menit",
     difficulty: "Mudah",
+    image: "/images/kentang tumbuk.jpg",
     ingredients: [
       { name: "Kentang", amount: "2 buah besar" },
       { name: "Mentega / margarin", amount: "1 sdm" },
@@ -768,6 +774,7 @@ export const recipes: Recipe[] = [
     emoji: "🥗",
     time: "12 menit",
     difficulty: "Mudah",
+    image: "/images/tumis tauge tahu.jpg",
     ingredients: [
       { name: "Tauge segar", amount: "100 gram" },
       { name: "Tahu putih", amount: "2 kotak (potong dadu kecil)" },
@@ -791,6 +798,7 @@ export const recipes: Recipe[] = [
     emoji: "🍲",
     time: "10 menit",
     difficulty: "Mudah",
+    image: "/images/sup Telur Air Kaldu Sederhana.jpg",
     ingredients: [
       { name: "Telur ayam", amount: "1 butir (kocok lepas)" },
       { name: "Kaldu ayam bubuk", amount: "1 sdt" },
@@ -814,6 +822,7 @@ export const recipes: Recipe[] = [
     emoji: "🍢",
     time: "15 menit",
     difficulty: "Mudah",
+    image: "/images/Tempe Bakar Bumbu Kuning Instan.jpg",
     ingredients: [
       { name: "Tempe", amount: "1 papan" },
       { name: "Bumbu kuning instan siap pakai", amount: "1 sdm" },
@@ -836,6 +845,7 @@ export const recipes: Recipe[] = [
     emoji: "🍠",
     time: "30 menit",
     difficulty: "Mudah",
+    image: "/images/Singkong Kukus.jpg",
     ingredients: [
       { name: "Singkong kupas", amount: "500 gram (potong silinder)" },
       { name: "Garam", amount: "1 sdt" },
@@ -1078,6 +1088,7 @@ export const recipes: Recipe[] = [
     emoji: "🍲",
     time: "30 menit",
     difficulty: "Mudah",
+    image: "/images/sup Telur Air Kaldu Sederhana.jpg",
     ingredients: [
       { name: "Wortel", amount: "1 buah (iris tipis)" },
       { name: "Kentang", amount: "1 buah (potong dadu)" },
