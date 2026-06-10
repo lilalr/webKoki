@@ -46,13 +46,18 @@ export function KitchenToolsListScreen() {
             className="w-full rounded-[24px] p-5 shadow-[0_8px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_15px_30px_rgba(0,0,0,0.1)] border border-transparent hover:border-[#2E7D32]20 hover:-translate-y-1.5 transition-all duration-300 flex items-center gap-4 text-left group cursor-pointer"
             style={{ backgroundColor: colors.cardBg }}
           >
-            {/* Tool Emoji Icon */}
-            <div
-              className="w-16 h-16 rounded-[20px] flex items-center justify-center text-3xl shadow-md flex-shrink-0 transition-transform duration-300 group-hover:scale-105"
-              style={{ backgroundColor: colors.primary }}
-            >
-              {tool.emoji}
-            </div>
+            {tool.image ? (
+              <div className="relative w-20 h-20 rounded-[20px] overflow-hidden shadow-md flex-shrink-0 bg-white">
+                <img src={tool.image} alt={tool.title} className="w-full h-full object-cover" />
+              </div>
+            ) : (
+              <div
+                className="w-16 h-16 rounded-[20px] flex items-center justify-center text-3xl shadow-md flex-shrink-0 transition-transform duration-300 group-hover:scale-105"
+                style={{ backgroundColor: colors.primary }}
+              >
+                {tool.emoji}
+              </div>
+            )}
 
             {/* Tool Title & Danger Indicator */}
             <div className="flex-1 min-w-0">
