@@ -34,3 +34,18 @@ export function isRecipeCompleted(recipeId: string): boolean {
 export function isRecipeCompletedInCategory(recipeId: string, category: string): boolean {
   return isRecipeCompleted(recipeId);
 }
+
+export function getChefLevel(completedCount: number): { name: string; emoji: string } {
+  if (completedCount <= 1) {
+    return { name: "Chef Magang", emoji: "🥚" };
+  } else if (completedCount <= 4) {
+    return { name: "Chef Pemula", emoji: "🌱" };
+  } else if (completedCount <= 8) {
+    return { name: "Chef Terampil", emoji: "🍳" };
+  } else if (completedCount <= 13) {
+    return { name: "Chef Profesional", emoji: "👨‍🍳" };
+  } else {
+    return { name: "Master Chef", emoji: "👑" };
+  }
+}
+

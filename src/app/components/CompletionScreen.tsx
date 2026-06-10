@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router";
 import { getRecipeById } from "../data/recipes";
 import { useTheme } from "../context/ThemeContext";
-import { addCompletedRecipe } from "../utils/completedRecipes";
+import { addCompletedRecipe, getChefLevel, getCompletedRecipes } from "../utils/completedRecipes";
 import chefGirl from "../../imports/chef_girl_celebrating.png";
 import chefBoy from "../../imports/chef_boy_celebrating.png";
 
@@ -110,12 +110,12 @@ export function CompletionScreen() {
         <div className="rounded-3xl p-8 shadow-xl mb-6 border-4" style={{ backgroundColor: colors.cardBg, borderColor: colors.accent }}>
           {/* Gold star icon */}
           <div className="flex justify-center mb-3">
-            <div className="text-[48px] animate-bounce">⭐</div>
+            <div className="text-[48px] animate-bounce">{getChefLevel(getCompletedRecipes().length).emoji}</div>
           </div>
 
           {/* Badge title */}
           <h2 className="text-xl font-bold text-center mb-2" style={{ color: colors.text }}>
-            Chef Pemula
+            {getChefLevel(getCompletedRecipes().length).name}
           </h2>
 
           {/* Badge subtitle */}
@@ -133,8 +133,17 @@ export function CompletionScreen() {
         <div className="rounded-2xl p-6 shadow-lg mb-8" style={{ backgroundColor: colors.cardBg }}>
           <p className="text-sm mb-3" style={{ color: colors.textSecondary }}>Tadi kamu masak:</p>
 
-          <div className="flex items-center gap-3 mb-4">
-            <span className="text-4xl">{recipe?.emoji || "🍳"}</span>
+          <div className="flex items-center gap-4 mb-4 text-left">
+            {recipe?.image ? (
+              <img
+                src={recipe.image}
+                alt={recipe?.title}
+                className="w-16 h-16 rounded-2xl object-cover shadow-md border-2"
+                style={{ borderColor: colors.secondary }}
+              />
+            ) : (
+              <span className="text-4xl">{recipe?.emoji || "🍳"}</span>
+            )}
             <h3 className="text-xl font-bold" style={{ color: colors.text }}>
               {recipe?.title || "Masakan Lezat"}
             </h3>

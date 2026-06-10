@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 import { useTheme } from "../context/ThemeContext";
-import chefImage from "../../imports/chef_girl_transparent_v2.png";
+import chefImage from "../../imports/chef_girl_illustration.png";
 import chefBoy from "../../imports/chef_boy_transparent.png";
 import chefHat from "../../imports/chef_hat.png";
 import { useState, useEffect } from "react";

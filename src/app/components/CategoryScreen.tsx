@@ -98,7 +98,7 @@ export function CategoryScreen() {
     if (activeFilter === "cepat") {
       return recipes.filter((r) => {
         const minutes = parseInt(r.time);
-        return minutes <= 15;
+        return minutes >= 5 && minutes <= 10;
       });
     }
 
@@ -253,12 +253,22 @@ export function CategoryScreen() {
                   style={{ backgroundColor: colors.cardBg }}
                 >
                   <div className="flex items-center gap-4 mb-3">
-                    <div
-                      className="w-16 h-16 rounded-[16px] flex items-center justify-center text-3xl shadow-md"
-                      style={{ backgroundColor: colors.primary }}
-                    >
-                      {recipe.emoji}
-                    </div>
+                    {recipe.image ? (
+                      <div className="w-16 h-16 rounded-[16px] flex-shrink-0 overflow-hidden shadow-md">
+                        <img
+                          src={recipe.image}
+                          alt={recipe.title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    ) : (
+                      <div
+                        className="w-16 h-16 rounded-[16px] flex items-center justify-center text-3xl shadow-md flex-shrink-0"
+                        style={{ backgroundColor: colors.primary }}
+                      >
+                        {recipe.emoji}
+                      </div>
+                    )}
                     <div className="flex-1 text-left">
                       <h3 className="font-bold text-lg" style={{ color: colors.text }}>
                         {recipe.title}
@@ -437,7 +447,7 @@ export function CategoryScreen() {
                   <div className="bg-white/80 rounded-[16px] p-4 border border-[#F9A825]/10">
                     <span className="text-xs font-bold text-[#F9A825] uppercase block mb-1">Contoh Resep:</span>
                     <p className="text-xs text-[#212121] leading-relaxed font-semibold">
-                      Roti Selai Coklat, Roti Gulung Pisang Coklat, Sereal Susu Buah, Roti Gulung Sosis Keju, Es Susu Biskuit, Es Sirup Susu, Pisang Penyet Cokelat Messes.
+                      Sandwich Selai Kacang Pisang, Sandwich Sayur Mayo, Bola Coklat Biskuit, Bola Oat Madu, Oats Coklat Simpel, Salad Buah Yogurt, Roti Gulung Pisang Coklat, Wrap Sayur Mayo Pedas, Sereal Susu Buah, Roti Selai Coklat, Roti Gulung Sosis Keju, Es Susu Biskuit, Es Sirup Susu.
                     </p>
                   </div>
                 </div>
@@ -463,7 +473,7 @@ export function CategoryScreen() {
                   <div className="bg-white/80 rounded-[16px] p-4 border border-[#FF7043]/10">
                     <span className="text-xs font-bold text-[#FF7043] uppercase block mb-1">Contoh Resep:</span>
                     <p className="text-xs text-[#212121] leading-relaxed font-semibold">
-                      Telur Rebus, Roti Oles Mentega Gula, Roti Bakar, Orak-Arik Telur Wortel Buncis, Tumis Sawi Putih Bakso, Tomat Telur Kuah Segar, Kentang Tumbuk, Tumis Tauge Tahu, Sup Telur Air Kaldu Sederhana, Tempe Bakar Bumbu Kuning Instan, Singkong Kukus.
+                      Telur Rebus, Roti Oles Mentega Gula, Roti Bakar, Orak-Arik Telur Wortel Buncis, Tumis Sawi Putih Bakso, Tomat Telur Kuah Segar, Kentang Tumbuk, Tumis Tauge Tahu, Sup Telur Air Kaldu Sederhana, Tempe Bakar Bumbu Kuning Instan, Singkong Kukus, Pisang Penyet Cokelat Messes.
                     </p>
                   </div>
                 </div>

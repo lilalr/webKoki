@@ -6,7 +6,7 @@ import { useTheme } from "../context/ThemeContext";
 import chefGirl from "../../imports/chef_girl_transparent_v2.png";
 import chefBoy from "../../imports/chef_boy_standing.png";
 import { getFavorites } from "../utils/favorites";
-import { getCompletedRecipes } from "../utils/completedRecipes";
+import { getCompletedRecipes, getChefLevel } from "../utils/completedRecipes";
 import { recipes } from "../data/recipes";
 
 import { toast } from "sonner";
@@ -151,7 +151,7 @@ export function ProfilScreen() {
           </div>
           <div className="flex-1">
             <h1 className="text-2xl font-bold text-white drop-shadow-md">Chef Muda</h1>
-            <p className="text-white/90 text-sm">Level: Pemula 🌱</p>
+            <p className="text-white/90 text-sm">Level: {getChefLevel(getCompletedRecipes().length).name} {getChefLevel(getCompletedRecipes().length).emoji}</p>
           </div>
         </div>
 
@@ -171,6 +171,66 @@ export function ProfilScreen() {
       </div>
 
       <div className="px-4 md:px-8 lg:px-12 max-w-4xl mx-auto mt-6 space-y-6">
+        {/* Chef Level Guide Card */}
+        <div className="rounded-[2rem] p-6 shadow-lg text-left" style={{ backgroundColor: colors.cardBg }}>
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-xl">🏆</span>
+            <h2 className="text-lg font-bold" style={{ color: colors.text, fontFamily: "'Fredoka', sans-serif" }}>
+              Tingkatan Level Chef
+            </h2>
+          </div>
+          <p className="text-xs font-semibold mb-4 text-left leading-relaxed animate-fade-in" style={{ color: colors.textSecondary }}>
+            Selesaikan lebih banyak masakan untuk meningkatkan gelarmu di dapur!
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {[
+              { level: "Chef Magang 🥚", req: "0 - 1 masakan selesai", desc: "Baru memulai petualangan dapur." },
+              { level: "Chef Pemula 🌱", req: "2 - 4 masakan selesai", desc: "Mulai menguasai resep dasar." },
+              { level: "Chef Terampil 🍳", req: "5 - 8 masakan selesai", desc: "Bisa mengolah berbagai hidangan." },
+              { level: "Chef Profesional 👨‍🍳", req: "9 - 13 masakan selesai", desc: "Hebat menggunakan kompor & pisau." },
+              { level: "Master Chef 👑", req: "14+ masakan selesai", desc: "Legenda dapur sejati!" },
+            ].map((tier, idx) => {
+              const completedCount = getCompletedRecipes().length;
+              const isCurrent = 
+                (idx === 0 && completedCount <= 1) ||
+                (idx === 1 && completedCount >= 2 && completedCount <= 4) ||
+                (idx === 2 && completedCount >= 5 && completedCount <= 8) ||
+                (idx === 3 && completedCount >= 9 && completedCount <= 13) ||
+                (idx === 4 && completedCount >= 14);
+
+              return (
+                <div 
+                  key={idx} 
+                  className="p-4 rounded-2xl border transition-all flex items-start justify-between gap-2"
+                  style={{
+                    backgroundColor: isCurrent ? `${colors.primary}12` : 'transparent',
+                    borderColor: isCurrent ? colors.primary : `${colors.textSecondary}20`,
+                    borderWidth: isCurrent ? '2px' : '1px',
+                    boxShadow: isCurrent ? `0 8px 20px -8px ${colors.primary}30` : ''
+                  }}
+                >
+                  <div className="text-left">
+                    <p className="font-bold text-sm flex items-center gap-1.5" style={{ color: isCurrent ? colors.primary : colors.text }}>
+                      {tier.level} 
+                      {isCurrent && (
+                        <span className="text-[10px] px-2 py-0.5 rounded-full font-bold ml-1 text-white animate-pulse" style={{ backgroundColor: colors.primary }}>
+                          KAMU
+                        </span>
+                      )}
+                    </p>
+                    <p className="text-xs font-bold mt-1" style={{ color: colors.secondary }}>
+                      ⏱️ {tier.req}
+                    </p>
+                    <p className="text-xs font-semibold mt-1.5" style={{ color: colors.textSecondary }}>
+                      {tier.desc}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
         <div>
           <div className="flex items-center gap-2 mb-3">
             <Palette size={20} style={{ color: colors.primary }} />

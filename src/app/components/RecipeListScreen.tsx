@@ -27,6 +27,8 @@ export function RecipeListScreen() {
 
   const categoryCovers: Record<string, string> = {
     "tanpa-api": "/images/cover-tanpa-api.png",
+    "api-kecil": "/images/cover-api-kecil.jpg",
+    "alat-listrik": "/images/cover-alat-listrik.png",
   };
 
   const coverImage = categoryCovers[categoryId || ""];

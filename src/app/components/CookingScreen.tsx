@@ -81,6 +81,67 @@ export function CookingScreen() {
   const allStepsCompleted = checkedStepsCount === recipe.steps.length;
   const percentage = Math.round((checkedStepsCount / recipe.steps.length) * 100);
 
+  const getStepDetail = (text: string) => {
+    const textLower = text.toLowerCase();
+    if (textLower.includes("iris tipis tomat") || textLower.includes("iris tipis timun") || textLower.includes("iris tipis tomat dan timun")) {
+      return {
+        title: "Bentuk Irisan Timun & Tomat",
+        desc: "Irisan membulat (round cut). Potong timun tipis-tipis melintang setebal 2-3 mm. Untuk tomat, potong melintang melingkar agar bijinya tetap tertata rapi di dalam irisan.",
+        emoji: "🥒🍅"
+      };
+    }
+    if (textLower.includes("iris tipis") || textLower.includes("iris tipis-tipis")) {
+      return {
+        title: "Bentuk Irisan Tipis",
+        desc: "Irisan tipis memanjang atau membulat dengan ketebalan yang sama (sekitar 2 mm) agar mudah dikunyah dan matang/meresap merata.",
+        emoji: "🔪"
+      };
+    }
+    if (textLower.includes("potong dadu") || textLower.includes("potong menjadi dadu")) {
+      return {
+        title: "Bentuk Potongan Dadu (Dice)",
+        desc: "Potongan kotak-kotak berbentuk kubus kecil ukuran sekitar 1 x 1 cm. Cocok untuk bahan sup atau salad agar pas dalam sekali suap.",
+        emoji: "🥕"
+      };
+    }
+    if (textLower.includes("cincang") || textLower.includes("cincang halus")) {
+      return {
+        title: "Bentuk Cincang Halus (Mince)",
+        desc: "Cacah bahan makanan (seperti bawang putih) sampai menjadi butiran-butiran sangat halus agar aromanya tersebar merata ke seluruh masakan.",
+        emoji: "🧄"
+      };
+    }
+    if (textLower.includes("potong menjadi 2") || textLower.includes("potong diagonal") || textLower.includes("potong jadi 2")) {
+      return {
+        title: "Bentuk Potongan Diagonal / Segitiga",
+        desc: "Potong roti atau bahan dari sudut ke sudut secara menyilang (diagonal) untuk menghasilkan bentuk segitiga yang cantik dan mudah digenggam.",
+        emoji: "🥪"
+      };
+    }
+    if (textLower.includes("iris pisang") || textLower.includes("iris pisang tipis-tipis")) {
+      return {
+        title: "Bentuk Irisan Pisang",
+        desc: "Iris pisang secara melingkar setebal 5 mm. Usahakan ketebalannya sama agar tumpukan buah di atas roti rata dan rapi.",
+        emoji: "🍌"
+      };
+    }
+    if (textLower.includes("kupas kulit pisang") || textLower.includes("kupas pisang")) {
+      return {
+        title: "Cara Mengupas Pisang",
+        desc: "Kupas pisang mulai dari ujung bawah atau atas secara perlahan, pastikan serat-serat putih yang menempel pada buah juga ikut bersih terbuang.",
+        emoji: "🍌"
+      };
+    }
+    if (textLower.includes("cuci bersih") || textLower.includes("cuci")) {
+      return {
+        title: "Cara Mencuci Sayur/Buah",
+        desc: "Cuci di bawah air mengalir sambil digosok perlahan menggunakan jari tangan untuk membersihkan debu atau kotoran yang menempel pada lipatan daun/kulit.",
+        emoji: "🚰"
+      };
+    }
+    return null;
+  };
+
   const hasDanger = recipe.steps.some(step => step.isDanger);
 
   return (
@@ -109,9 +170,19 @@ export function CookingScreen() {
                 </h1>
               </div>
               
-              {/* Animated floating recipe emoji */}
-              <div className="text-5xl md:text-7xl animate-float select-none pointer-events-none ml-2">
-                {recipe.emoji}
+              {/* Animated floating recipe image or emoji */}
+              <div className="animate-float select-none pointer-events-none ml-2 flex-shrink-0">
+                {recipe.image ? (
+                  <img
+                    src={recipe.image}
+                    alt={recipe.title}
+                    className="w-20 h-20 md:w-24 md:h-24 rounded-2xl object-cover border-4 border-white/30 shadow-lg transform rotate-3"
+                  />
+                ) : (
+                  <div className="text-5xl md:text-7xl">
+                    {recipe.emoji}
+                  </div>
+                )}
               </div>
             </div>
 
@@ -336,23 +407,27 @@ export function CookingScreen() {
                             )}
                           </div>
 
-                          {/* Video thumbnail - 16:9 ratio */}
-                          {needsVideo && (
-                            <button
-                              className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-md group mt-2 cursor-pointer transition-transform duration-300 hover:scale-[1.01]"
-                              style={{ backgroundColor: colors.primary }}
+                          {/* Step Detail Explanation Card */}
+                          {getStepDetail(step.text) && (
+                            <div 
+                              className="mt-3 p-4 rounded-2xl shadow-sm border border-transparent text-left flex items-start gap-3 transition-all duration-300"
+                              style={{ 
+                                backgroundColor: colors.mode === 'dark' ? '#1f2937' : '#f9fafb',
+                                borderLeft: `4px solid ${colors.secondary}`
+                              }}
                             >
-                              <div className="absolute inset-0 flex items-center justify-center">
-                                <span className="text-5xl">{recipe.emoji}</span>
+                              <div className="text-2xl mt-0.5 select-none">
+                                {getStepDetail(step.text)?.emoji}
                               </div>
-                              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/35 transition-all" />
-                              <div className="absolute inset-0 flex flex-col items-center justify-center">
-                                <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-all">
-                                  <Play size={20} style={{ color: colors.primary }} className="ml-1" />
-                                </div>
-                                <p className="text-xs text-white font-bold mt-2.5 drop-shadow-md">▶ Tonton Video Tutorial</p>
+                              <div className="flex-1">
+                                <h4 className="text-xs font-bold uppercase tracking-wider mb-1" style={{ color: colors.secondary }}>
+                                  {getStepDetail(step.text)?.title}
+                                </h4>
+                                <p className="text-xs leading-relaxed font-semibold" style={{ color: colors.textSecondary }}>
+                                  {getStepDetail(step.text)?.desc}
+                                </p>
                               </div>
-                            </button>
+                            </div>
                           )}
                         </div>
                       </div>

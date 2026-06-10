@@ -82,12 +82,22 @@ export function FavoritScreen() {
                   onClick={() => navigate(`/resep/${recipe.id}`)}
                   className="flex items-center gap-4 flex-1"
                 >
-                  <div
-                    className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl shadow-md flex-shrink-0"
-                    style={{ backgroundColor: colors.primary }}
-                  >
-                    {recipe.emoji}
-                  </div>
+                  {recipe.image ? (
+                    <div className="w-16 h-16 rounded-2xl flex-shrink-0 overflow-hidden shadow-md">
+                      <img
+                        src={recipe.image}
+                        alt={recipe.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <div
+                      className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl shadow-md flex-shrink-0"
+                      style={{ backgroundColor: colors.primary }}
+                    >
+                      {recipe.emoji}
+                    </div>
+                  )}
                   <div className="flex-1 text-left">
                     <h3 className="font-bold text-lg" style={{ color: colors.text }}>
                       {recipe.title}

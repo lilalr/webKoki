@@ -57,6 +57,180 @@ export function RecipeDetail() {
     setCheckedIngredients(newChecked);
   };
 
+  const getRecipePrepGuides = () => {
+    const guides: { title: string; desc: string; emoji: string }[] = [];
+    const allStepsText = recipe.steps.map(s => s.text.toLowerCase()).join(" ");
+    const allIngredientsText = recipe.ingredients.map(i => i.name.toLowerCase()).join(" ");
+
+    // 1. Tomat / Timun
+    if (allStepsText.includes("tomat") || allStepsText.includes("timun") || allIngredientsText.includes("tomat") || allIngredientsText.includes("timun")) {
+      if (allStepsText.includes("iris")) {
+        guides.push({
+          title: "Bentuk Irisan Timun & Tomat",
+          desc: "Irisan membulat (round cut). Potong timun melintang dengan ketebalan sekitar 2-3 mm. Untuk tomat, iris melintang agar bijinya melingkar indah dan tidak hancur.",
+          emoji: "🥒🍅"
+        });
+      }
+    }
+
+    // 2. Pisang
+    if (allStepsText.includes("pisang") || allIngredientsText.includes("pisang")) {
+      if (allStepsText.includes("iris")) {
+        guides.push({
+          title: "Bentuk Irisan Pisang",
+          desc: "Iris pisang secara melintang (bulat-bulat) dengan ketebalan seragam sekitar 5 mm agar mudah ditata rapi di atas roti.",
+          emoji: "🍌"
+        });
+      }
+      if (allStepsText.includes("kupas")) {
+        guides.push({
+          title: "Cara Mengupas Pisang",
+          desc: "Kupas kulit pisang memanjang, lalu bersihkan serat-serat putih halus yang menempel pada buah agar rasanya lebih manis dan lembut.",
+          emoji: "🍌"
+        });
+      }
+      if (allStepsText.includes("penyet") || allStepsText.includes("tekan")) {
+        guides.push({
+          title: "Teknik Menyelaraskan / Memipihkan Pisang",
+          desc: "Gunakan punggung sendok makan bersih untuk menekan pisang perlahan ke bawah. Cukup tekan sampai pipih setengah tinggi aslinya agar pisang tidak hancur berkeping-keping.",
+          emoji: "🍽️"
+        });
+      }
+    }
+
+    // 3. Wortel
+    if (allStepsText.includes("wortel") || allIngredientsText.includes("wortel")) {
+      guides.push({
+        title: "Bentuk Potongan Wortel",
+        desc: "Iris tipis bulat setebal 1-2 mm. Karena wortel bertekstur keras, irisan yang sangat tipis akan membantunya matang lebih cepat dan empuk saat direbus dengan api kecil.",
+        emoji: "🥕"
+      });
+    }
+
+    // 4. Sawi / Selada / Sayuran Hijau
+    if (allStepsText.includes("sawi") || allStepsText.includes("selada") || allIngredientsText.includes("sawi") || allIngredientsText.includes("selada")) {
+      guides.push({
+        title: "Cara Menyiapkan Sayuran Hijau",
+        desc: "Potong melintang dengan ukuran lebar sekitar 2-3 cm (bite-sized). Cuci bersih dengan air mengalir di setiap sela daun untuk membuang sisa kotoran tanah.",
+        emoji: "🥬"
+      });
+    }
+
+    // 5. Daun Bawang
+    if (allStepsText.includes("daun bawang") || allIngredientsText.includes("daun bawang")) {
+      guides.push({
+        title: "Irisan Daun Bawang",
+        desc: "Iris halus/tipis melintang setebal 1 mm. Gunakan bagian putih dan hijau untuk memberikan aroma segar dan warna yang cantik pada sup atau telur.",
+        emoji: "🟢"
+      });
+    }
+
+    // 6. Bawang Putih / Bawang Merah
+    if (allStepsText.includes("bawang putih") || allStepsText.includes("bawang merah") || allIngredientsText.includes("bawang")) {
+      if (allStepsText.includes("cincang")) {
+        guides.push({
+          title: "Bentuk Cincang Halus Bawang Putih",
+          desc: "Geprek bawang putih terlebih dahulu dengan pisau rata, lalu cincang bolak-balik sampai menjadi butiran sangat halus agar aromanya tercampur merata.",
+          emoji: "🧄"
+        });
+      } else if (allStepsText.includes("iris")) {
+        guides.push({
+          title: "Bentuk Irisan Bawang",
+          desc: "Iris tipis melintang setebal 1 mm mengikuti arah serat bawang agar saat ditumis harumnya keluar sempurna dan tidak mudah gosong.",
+          emoji: "🧅"
+        });
+      }
+    }
+
+    // 7. Biskuit
+    if (allStepsText.includes("biskuit") || allIngredientsText.includes("biskuit")) {
+      guides.push({
+        title: "Cara Menghancurkan Biskuit",
+        desc: "Masukkan biskuit ke dalam kantong plastik bersih, lalu remas-remas dengan tangan atau giling menggunakan botol kaca/rolling pin sampai menjadi bubuk halus.",
+        emoji: "🍪"
+      });
+    }
+
+    // 8. Bola-bola
+    if (allStepsText.includes("bola-bola") || allStepsText.includes("bulatkan")) {
+      guides.push({
+        title: "Teknik Membentuk Bola Adonan",
+        desc: "Ambil 1 sendok makan adonan, taruh di telapak tangan yang sudah bersih/kering, lalu putar telapak tangan berlawanan arah hingga membentuk bola bulat mulus diameter 2 cm.",
+        emoji: "🧆"
+      });
+    }
+
+    // 9. Telur (kocok/ceplok)
+    if (allIngredientsText.includes("telur")) {
+      if (allStepsText.includes("kocok")) {
+        guides.push({
+          title: "Teknik Mengocok Telur",
+          desc: "Pecahkan telur ke mangkuk, gunakan garpu miring, kocok dengan gerakan melingkar cepat sampai bagian putih dan kuning telur menyatu rata dan berbusa sedikit.",
+          emoji: "🥚"
+        });
+      }
+      if (allStepsText.includes("ceplok") || allStepsText.includes("pecahkan telur")) {
+        guides.push({
+          title: "Cara Memecahkan Telur untuk Telur Ceplok",
+          desc: "Ketuk bagian tengah telur perlahan pada permukaan datar, lalu gunakan kedua ibu jari untuk membuka cangkangnya ke arah luar langsung ke mangkuk kecil terlebih dahulu untuk menghindari serpihan kulit telur masuk.",
+          emoji: "🍳"
+        });
+      }
+    }
+
+    // 10. Roti Tawar (oles / potong)
+    if (allIngredientsText.includes("roti tawar") || allIngredientsText.includes("roti")) {
+      if (allStepsText.includes("oles")) {
+        guides.push({
+          title: "Cara Mengoles Selai / Mentega",
+          desc: "Gunakan punggung sendok makan atau spatula kecil. Mulai dari bagian tengah roti lalu tarik perlahan ke arah luar hingga merata ke seluruh sudut roti.",
+          emoji: "🍞"
+        });
+      }
+      if (allStepsText.includes("potong diagonal") || allStepsText.includes("potong jadi 2") || allStepsText.includes("potong menjadi 2")) {
+        guides.push({
+          title: "Bentuk Potongan Segitiga (Diagonal)",
+          desc: "Letakkan roti rata di atas talenan. Letakkan pisau secara menyilang dari sudut kiri atas ke sudut kanan bawah, potong perlahan dengan gerakan maju-mundur searah.",
+          emoji: "🥪"
+        });
+      }
+    }
+
+    // 11. Sosis / Bakso
+    if (allIngredientsText.includes("sosis") || allIngredientsText.includes("bakso")) {
+      guides.push({
+        title: "Potongan Sosis / Bakso",
+        desc: "Iris sosis melintang miring (diagonal) setebal 5 mm agar tampilannya menarik. Untuk bakso, belah menjadi 2 atau 4 bagian agar lebih cepat matang.",
+        emoji: "🌭"
+      });
+    }
+
+    // 12. Keju (parut)
+    if (allIngredientsText.includes("keju") && allStepsText.includes("parut")) {
+      guides.push({
+        title: "Teknik Memarut Keju",
+        desc: "Pegang parutan keju dengan tangan kiri dengan sudut kemiringan 45 derajat. Gesekkan keju menggunakan tangan kanan dari atas ke bawah satu arah untuk parutan rapi memanjang.",
+        emoji: "🧀"
+      });
+    }
+
+    // Default general guide if no matching specific guides were found
+    if (guides.length === 0) {
+      guides.push({
+        title: "Persiapan Higienis & Area Bersih",
+        desc: "Cuci tangan dengan sabun sebelum menyiapkan bahan. Siapkan semua alat dan wadah di dekatmu agar proses memasak berjalan lancar dan rapi.",
+        emoji: "🧼"
+      });
+      guides.push({
+        title: "Mengukur Bahan dengan Sendok/Gelas",
+        desc: "Gunakan sendok takar atau sendok makan standar. Isi sendok rata (tidak terlalu munjung) agar rasa masakan pas sesuai takaran resep.",
+        emoji: "🥄"
+      });
+    }
+
+    return guides;
+  };
+
   const hasDanger = recipe.steps.some(step => step.isDanger);
 
   return (
@@ -205,6 +379,50 @@ export function RecipeDetail() {
             </div>
           </div>
         )}
+
+        {/* Video section */}
+        {recipe.videoUrl && (
+          <div className="rounded-[2.5rem] overflow-hidden shadow-xl mb-8 border border-transparent" style={{ backgroundColor: colors.cardBg }}>
+            <div className="p-5 flex items-center gap-3" style={{ backgroundColor: colors.primary }}>
+              <div className="text-3xl">📹</div>
+              <div className="text-left">
+                <h3 className="font-bold text-white text-lg" style={{ fontFamily: "'Fredoka', sans-serif" }}>Video Tutorial</h3>
+                <p className="text-sm text-white/95">Tonton cara membuatnya!</p>
+              </div>
+            </div>
+            <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+              <iframe
+                className="absolute top-0 left-0 w-full h-full"
+                src={recipe.videoUrl}
+                title={`Video Tutorial ${recipe.title}`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        )}
+
+        {/* Video replaced with Detailed Prep & Cutting Guide */}
+        <div className="rounded-[2.5rem] overflow-hidden shadow-xl mb-8 border border-transparent" style={{ backgroundColor: colors.cardBg }}>
+          <div className="p-5 flex items-center gap-3" style={{ backgroundColor: colors.secondary }}>
+            <div className="text-3xl">🔪</div>
+            <div className="text-left">
+              <h3 className="font-bold text-white text-lg" style={{ fontFamily: "'Fredoka', sans-serif" }}>Detail Persiapan & Teknik Potong</h3>
+              <p className="text-xs text-white/95">Penjelasan bentuk potongan dan persiapan bahan agar hasil masakan rapi dan aman!</p>
+            </div>
+          </div>
+          <div className="p-6 space-y-4">
+            {getRecipePrepGuides().map((guide, idx) => (
+              <div key={idx} className="flex gap-4 items-start p-4 rounded-2xl" style={{ backgroundColor: colors.mode === 'dark' ? '#1f2937' : '#f9fafb' }}>
+                <span className="text-3xl select-none" role="img" aria-label="prep-emoji">{guide.emoji}</span>
+                <div className="text-left">
+                  <h4 className="font-bold text-sm" style={{ color: colors.secondary, fontFamily: "'Fredoka', sans-serif" }}>{guide.title}</h4>
+                  <p className="text-xs font-semibold leading-relaxed mt-1" style={{ color: colors.textSecondary }}>{guide.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
 
         {/* Bahan-bahan section */}
         <div className="mb-8">
