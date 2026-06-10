@@ -25,16 +25,29 @@ export function RecipeListScreen() {
 
   const categoryName = categoryNames[categoryId || ""] || "Resep";
 
+  const categoryCovers: Record<string, string> = {
+    "tanpa-api": "/images/cover-tanpa-api.png",
+  };
+
+  const coverImage = categoryCovers[categoryId || ""];
+
   return (
     <div className="min-h-screen pt-16 pb-8" style={{ background: colors.background }}>
       {/* Header Banner with gradient and decorative blobs */}
       <div
-        className="px-6 md:px-12 pt-8 pb-10 rounded-b-[2.5rem] shadow-xl overflow-hidden relative"
-        style={{ backgroundColor: colors.primary }}
+        className="px-6 md:px-12 pt-8 pb-10 rounded-b-[2.5rem] shadow-xl overflow-hidden relative bg-cover bg-center"
+        style={{ 
+          backgroundColor: colors.primary,
+          backgroundImage: coverImage ? `url(${coverImage})` : 'none',
+        }}
       >
+        {/* Dark overlay if there is a cover image to ensure text readability */}
+        {coverImage && (
+          <div className="absolute inset-0 bg-black/50 z-0" />
+        )}
         {/* Decorative background blobs */}
-        <div className="absolute right-[-30px] top-[-30px] w-48 h-48 rounded-full bg-white/10 blur-2xl pointer-events-none" />
-        <div className="absolute left-[-20px] bottom-[-40px] w-36 h-36 rounded-full bg-black/5 blur-xl pointer-events-none" />
+        <div className="absolute right-[-30px] top-[-30px] w-48 h-48 rounded-full bg-white/10 blur-2xl pointer-events-none z-0" />
+        <div className="absolute left-[-20px] bottom-[-40px] w-36 h-36 rounded-full bg-black/5 blur-xl pointer-events-none z-0" />
 
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="flex items-center gap-4 mb-4">

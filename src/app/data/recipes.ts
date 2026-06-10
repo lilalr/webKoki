@@ -435,6 +435,7 @@ export const recipes: Recipe[] = [
     emoji: "🍳",
     time: "10 menit",
     difficulty: "Mudah",
+    image: "/images/telur-dadar-keju.png",
     ingredients: [
       { name: "Telur", amount: "2 butir" },
       { name: "Keju parut", amount: "2 sdm" },
@@ -484,6 +485,7 @@ export const recipes: Recipe[] = [
     emoji: "🥣",
     time: "20 menit",
     difficulty: "Mudah",
+    image: "/images/sup-jagung-telur.png",
     ingredients: [
       { name: "Jagung manis pipil", amount: "1 cup" },
       { name: "Telur", amount: "1 butir" },
@@ -509,6 +511,7 @@ export const recipes: Recipe[] = [
     emoji: "🍛",
     time: "15 menit",
     difficulty: "Mudah",
+    image: "/images/nasi-goreng-kecap.jpg",
     ingredients: [
       { name: "Nasi putih", amount: "1 piring" },
       { name: "Telur", amount: "1 butir" },
@@ -534,6 +537,7 @@ export const recipes: Recipe[] = [
     emoji: "🍳",
     time: "8 menit",
     difficulty: "Mudah",
+    image: "/images/telur-ceplok.jpg",
     ingredients: [
       { name: "Telur", amount: "1 butir" },
       { name: "Minyak goreng", amount: "2 sdm" },
@@ -556,6 +560,7 @@ export const recipes: Recipe[] = [
     emoji: "🥬",
     time: "15 menit",
     difficulty: "Mudah",
+    image: "/images/tumis-sayur-bawang-putih.jpg",
     ingredients: [
       { name: "Kangkung atau bayam", amount: "1 ikat" },
       { name: "Bawang putih", amount: "3 siung" },
@@ -580,6 +585,7 @@ export const recipes: Recipe[] = [
     emoji: "🥣",
     time: "10 menit",
     difficulty: "Mudah",
+    image: "/images/oatmeal-susu-hangat.jpg",
     ingredients: [
       { name: "Oat", amount: "1/2 cup" },
       { name: "Susu cair", amount: "1 cup" },
@@ -869,6 +875,7 @@ export const recipes: Recipe[] = [
     emoji: "🍚",
     time: "35 menit",
     difficulty: "Mudah",
+    image: "/images/nasi-kukus-sayur.jpg",
     ingredients: [
       { name: "Beras", amount: "2 gelas" },
       { name: "Air", amount: "2.5 gelas" },
@@ -894,6 +901,7 @@ export const recipes: Recipe[] = [
     emoji: "🍛",
     time: "20 menit",
     difficulty: "Mudah",
+    image: "/images/nasi-goreng-rice-cooker.png",
     ingredients: [
       { name: "Nasi putih", amount: "2 piring" },
       { name: "Telur", amount: "1 butir" },
@@ -918,6 +926,7 @@ export const recipes: Recipe[] = [
     emoji: "🥣",
     time: "40 menit",
     difficulty: "Mudah",
+    image: "/images/bubur-ayam-simpel.png",
     ingredients: [
       { name: "Beras", amount: "1/2 cup" },
       { name: "Air", amount: "4 cup" },
@@ -943,6 +952,7 @@ export const recipes: Recipe[] = [
     emoji: "🥤",
     time: "5 menit",
     difficulty: "Mudah",
+    image: "/images/smoothie-pisang-coklat.jpg",
     ingredients: [
       { name: "Pisang", amount: "2 buah" },
       { name: "Susu cair", amount: "200 ml" },
@@ -967,6 +977,7 @@ export const recipes: Recipe[] = [
     emoji: "🥤",
     time: "5 menit",
     difficulty: "Mudah",
+    image: "/images/jus-alpukat-susu.png",
     ingredients: [
       { name: "Alpukat matang", amount: "1 buah" },
       { name: "Susu cair", amount: "200 ml" },
@@ -990,6 +1001,7 @@ export const recipes: Recipe[] = [
     emoji: "🥤",
     time: "5 menit",
     difficulty: "Mudah",
+    image: "/images/banana-milkshake.png",
     ingredients: [
       { name: "Pisang beku", amount: "2 buah" },
       { name: "Susu cair", amount: "250 ml" },
@@ -1013,6 +1025,7 @@ export const recipes: Recipe[] = [
     emoji: "🧁",
     time: "5 menit",
     difficulty: "Mudah",
+    image: "/images/mug-cake-coklat.png",
     ingredients: [
       { name: "Tepung terigu", amount: "4 sdm" },
       { name: "Gula pasir", amount: "4 sdm" },
@@ -1126,29 +1139,6 @@ export const recipes: Recipe[] = [
       { text: "Colokkan kabel dengan tangan kering, lalu tekan tombol Cook.", isDanger: true, dangerText: "Awas sengatan listrik!" },
       { text: "Setelah 15 menit memasak, buka tutup rice cooker (hati-hati uap panas), lalu aduk nasi agar tidak lengket dan berkerak di bawah." },
       { text: "Tutup kembali dan masak sampai beras hancur melunak menjadi bubur kental lembut. Siap disajikan!" },
-    ],
-  },
-  {
-    id: "smoothie-pisang-oats-cokelat",
-    title: "Smoothie Pisang Oats Cokelat",
-    category: "alat-listrik",
-    categoryName: "Alat Listrik",
-    emoji: "🥤",
-    time: "5 menit",
-    difficulty: "Mudah",
-    image: "/images/Smoothie Pisang Oats Cokelat.jpg",
-    ingredients: [
-      { name: "Pisang matang", amount: "2 buah" },
-      { name: "Oats cepat masak", amount: "3 sdm" },
-      { name: "Suku cair cokelat", amount: "200 ml" },
-      { name: "Madu murni", amount: "1 sdm" },
-    ],
-    steps: [
-      { text: "Kupas pisang matang, lalu potong menjadi beberapa bagian kasar." },
-      { text: "Masukkan potongan pisang, oats cepat masak, susu cokelat, dan madu ke dalam gelas blender." },
-      { text: "Pasang tutup blender sampai rapat dan terkunci.", isDanger: true, dangerText: "Pastikan tutupnya rapat agar smoothie tidak memercik keluar!" },
-      { text: "Hubungkan kabel blender ke stopkontak listrik dengan tangan kering.", isDanger: true, dangerText: "Jangan memegang colokan listrik dengan tangan basah!" },
-      { text: "Nyalakan blender di kecepatan sedang selama 1-2 menit hingga oats halus menyatu. Tuang ke gelas!" },
     ],
   },
   {

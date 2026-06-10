@@ -489,7 +489,7 @@ export function CategoryScreen() {
                   <div className="bg-white/80 rounded-[16px] p-4 border border-[#0277BD]/10">
                     <span className="text-xs font-bold text-[#0277BD] uppercase block mb-1">Contoh Resep:</span>
                     <p className="text-xs text-[#212121] leading-relaxed font-semibold">
-                      Memasak Nasi Putih dengan Rice Cooker, Nasi Liwet Rice Cooker Sederhana, Sup Sayur Magic Com, Bubur Ayam Polos Instan, Smoothie Pisang Oats Cokelat, Jus Alpukat Kental Manis.
+                      Memasak Nasi Putih dengan Rice Cooker, Nasi Liwet Rice Cooker Sederhana, Sup Sayur Magic Com, Bubur Ayam Polos Instan, Smoothie Pisang Coklat, Jus Alpukat Susu, Jus Alpukat Kental Manis.
                     </p>
                   </div>
                 </div>
