@@ -21,7 +21,7 @@ export const recipes: Recipe[] = [
     emoji: "🥪",
     time: "10 menit",
     difficulty: "Mudah",
-    image: "/images/sandwich-telur-mayo.png",
+    image: "/images/telur rebus.jpg",
     ingredients: [
       { name: "Roti tawar", amount: "2 lembar" },
       { name: "Telur rebus", amount: "1 butir" },
@@ -45,6 +45,7 @@ export const recipes: Recipe[] = [
     emoji: "🥪",
     time: "5 menit",
     difficulty: "Mudah",
+    image: "/images/Sandwich Selai Kacang Pisang.jpg",
     ingredients: [
       { name: "Roti tawar", amount: "2 lembar" },
       { name: "Selai kacang", amount: "2 sdm" },
@@ -67,6 +68,7 @@ export const recipes: Recipe[] = [
     emoji: "🥪",
     time: "8 menit",
     difficulty: "Mudah",
+    image: "/images/Sandwich keju telur.jpg",
     ingredients: [
       { name: "Roti tawar", amount: "2 lembar" },
       { name: "Telur rebus", amount: "1 butir" },
@@ -90,6 +92,7 @@ export const recipes: Recipe[] = [
     emoji: "🥪",
     time: "10 menit",
     difficulty: "Mudah",
+    image: "/images/Sandwich Sayur Mayo.jpg",
     ingredients: [
       { name: "Roti tawar", amount: "2 lembar" },
       { name: "Tomat", amount: "1 buah" },
@@ -113,6 +116,7 @@ export const recipes: Recipe[] = [
     emoji: "🍫",
     time: "20 menit",
     difficulty: "Mudah",
+    image: "/images/Bola Coklat Biskuit.jpg",
     ingredients: [
       { name: "Biskuit marie", amount: "1 bungkus" },
       { name: "Susu kental manis coklat", amount: "4 sdm" },
@@ -136,6 +140,7 @@ export const recipes: Recipe[] = [
     emoji: "🍯",
     time: "15 menit",
     difficulty: "Mudah",
+    image: "/images/Bola Oat Madu.jpg",
     ingredients: [
       { name: "Oat", amount: "1 cup" },
       { name: "Madu", amount: "3 sdm" },
@@ -158,6 +163,7 @@ export const recipes: Recipe[] = [
     emoji: "🥣",
     time: "5 menit",
     difficulty: "Mudah",
+    image: "/images/Oats Coklat Simpel.jpg",
     ingredients: [
       { name: "Oat", amount: "3 sdm" },
       { name: "Susu cair", amount: "150 ml" },
@@ -206,6 +212,7 @@ export const recipes: Recipe[] = [
     emoji: "🌯",
     time: "10 menit",
     difficulty: "Mudah",
+    image: "/images/Roti Gulung Pisang Coklat.jpg",
     ingredients: [
       { name: "Roti tawar", amount: "2 lembar" },
       { name: "Pisang", amount: "1 buah" },
@@ -228,6 +235,7 @@ export const recipes: Recipe[] = [
     emoji: "🌯",
     time: "12 menit",
     difficulty: "Mudah",
+    image: "/images/Wrap Sayur Mayo Pedas.jpg",
     ingredients: [
       { name: "Tortilla atau kulit lumpia", amount: "2 lembar" },
       { name: "Selada", amount: "3 lembar" },
@@ -276,6 +284,7 @@ export const recipes: Recipe[] = [
     emoji: "🍙",
     time: "15 menit",
     difficulty: "Mudah",
+    image: "/images/Nasi Kepal Isi Telur.jpg",
     ingredients: [
       { name: "Nasi putih", amount: "1 mangkuk" },
       { name: "Telur rebus", amount: "1 butir" },
@@ -345,6 +354,7 @@ export const recipes: Recipe[] = [
     emoji: "🌯",
     time: "10 menit",
     difficulty: "Mudah",
+    image: "/images/Roti Gulung Sosis Keju.jpg",
     ingredients: [
       { name: "Roti tawar", amount: "2 lembar" },
       { name: "Sosis siap makan", amount: "2 buah" },
@@ -367,6 +377,7 @@ export const recipes: Recipe[] = [
     emoji: "🥛",
     time: "5 menit",
     difficulty: "Mudah",
+    image: "/images/Es Susu Biskuit.jpg",
     ingredients: [
       { name: "Biskuit Marie / biskuit cokelat", amount: "4 keping" },
       { name: "Susu cair putih", amount: "200 ml" },
@@ -389,6 +400,7 @@ export const recipes: Recipe[] = [
     emoji: "🍹",
     time: "3 menit",
     difficulty: "Mudah",
+    image: "/images/Es Sirup Susu.jpg",
     ingredients: [
       { name: "Sirup rasa cocopandan / melon", amount: "3 sdm" },
       { name: "Susu cair / kental manis putih", amount: "2 sdm" },
@@ -411,6 +423,7 @@ export const recipes: Recipe[] = [
     emoji: "🍌",
     time: "8 menit",
     difficulty: "Mudah",
+    image: "/images/Pisang Penyet Cokelat Messes.jpg",
     ingredients: [
       { name: "Pisang emas / pisang raja matang", amount: "2 buah" },
       { name: "Mentega", amount: "1 sdt" },
