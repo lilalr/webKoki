@@ -1169,7 +1169,7 @@ export const kitchenTools = [
     category: "pengenalan-alat",
     emoji: "🔪",
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    image: "/images/pisau-dapur.png",
+    image: "/images/caramenggunakanpisau.jpg",
     content: [
       "Pilih pisau yang bersih dan tajam agar tidak selip saat memotong.",
       "Genggam gagang pisau dengan erat menggunakan tangan utama (kanan/kiri) secara mantap.",
@@ -1185,6 +1185,7 @@ export const kitchenTools = [
     category: "pengenalan-alat",
     emoji: "🧅",
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    image: "/images/caraisirbawang.jpg",
     content: [
       "Kupas kulit bawang merah atau bawang putih terlebih dahulu sampai bersih.",
       "Potong bagian ujung bawang (akar) agar bawang mudah dipotong.",
@@ -1200,7 +1201,7 @@ export const kitchenTools = [
     category: "pengenalan-alat",
     emoji: "🍚",
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    image: "/images/rice-cooker.png",
+    image: "/images/ukurberas2.png",
     content: [
       "Ambil cup penakar bawaan dari kemasan beras atau rice cooker.",
       "Ciduk beras menggunakan cup tersebut sampai penuh meluap.",
@@ -1216,7 +1217,7 @@ export const kitchenTools = [
     category: "pengenalan-alat",
     emoji: "🥕",
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    image: "/images/pisau-dapur.png",
+    image: "/images/caramenggunakanpisau.jpg",
     content: [
       "Potongan dadu (dice): memotong bahan menjadi kotak-kotak kubus kecil (seperti wortel sup).",
       "Irisan bulat (round cut): memotong bulat melintang (seperti mentimun atau wortel tumis).",
@@ -1232,6 +1233,7 @@ export const kitchenTools = [
     category: "pengenalan-alat",
     emoji: "🪵",
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    image: "/images/talenan.jpg",
     content: [
       "Gunakan talenan yang kering, bersih, dan permukaannya tidak licin.",
       "Bedakan talenan: sediakan talenan khusus untuk daging mentah, dan talenan terpisah untuk sayur, buah, atau roti.",
@@ -1247,7 +1249,7 @@ export const kitchenTools = [
     category: "pengenalan-alat",
     emoji: "🍳",
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    image: "/images/kompor-gas.png",
+    image: "/images/wajan.jpg",
     content: [
       "Letakkan wajan dengan posisi stabil tepat di tengah-tengah tungku kompor.",
       "Gunakan wajan anti lengket (teflon) untuk pemula agar masakan tidak mudah gosong.",
@@ -1263,7 +1265,7 @@ export const kitchenTools = [
     category: "pengenalan-alat",
     emoji: "🍲",
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    image: "/images/kompor-gas.png",
+    image: "/images/panci.jpg",
     content: [
       "Gunakan panci untuk merebus air, membuat sup, atau merebus telur.",
       "Isi panci maksimal 3/4 tinggi wadah agar air tidak meluap keluar saat mendidih.",
@@ -1279,6 +1281,7 @@ export const kitchenTools = [
     category: "pengenalan-alat",
     emoji: "🥄",
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    image: "/images/sutil.jpg",
     content: [
       "Gunakan sutil atau spatula kayu/silikon untuk wajan teflon agar tidak baret.",
       "Sodet logam berlubang sangat baik untuk menggoreng karena memudahkan menyaring minyak goreng.",
@@ -1294,7 +1297,7 @@ export const kitchenTools = [
     category: "pengenalan-alat",
     emoji: "🔌",
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    image: "/images/rice-cooker.png",
+    image: "/images/riceCooker.jpeg",
     content: [
       "Cuci beras di wadah terpisah, bukan langsung di panci teflon Magic Com agar lapisan anti lengket tidak baret.",
       "Lap bagian luar panci Magic Com dengan serbet kering sampai benar-benar kering sebelum dimasukkan ke dalam mesin.",
@@ -1311,6 +1314,7 @@ export const kitchenTools = [
     category: "pengenalan-alat",
     emoji: "🌶️",
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    image: "/images/cobek.jpg",
     content: [
       "Siapkan cobek (alas) dan ulekan (penghancur) batu atau kayu di atas meja yang kokoh.",
       "Potong bumbu yang keras (seperti bawang, cabai, kemiri) menjadi potongan kecil agar lebih mudah diulek.",
@@ -1326,7 +1330,7 @@ export const kitchenTools = [
     category: "pengenalan-alat",
     emoji: "🔌",
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    image: "/images/blender.png",
+    image: "/images/blender.jpeg",
     content: [
       "Pastikan pisau blender di bagian bawah terpasang kencang dan tidak longgar.",
       "Masukkan bahan-bahan makanan (buah/bumbu) dan cairan secukupnya (air/susu).",
