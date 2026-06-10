@@ -41,6 +41,7 @@ export function CategoryScreen() {
       isTools: true,
       color: "#00796B",
       bgColor: "#E0F2F1",
+      image: "/images/cover-pengenalan-alat.png",
     },
     {
       id: "tanpa-api",
@@ -51,6 +52,7 @@ export function CategoryScreen() {
       count: recipes.filter((r) => r.category === "tanpa-api").length,
       color: "#F9A825",
       bgColor: "#FFFDE7",
+      image: "/images/cover-tanpa-api.png",
     },
     {
       id: "api-kecil",
@@ -61,6 +63,7 @@ export function CategoryScreen() {
       count: recipes.filter((r) => r.category === "api-kecil").length,
       color: "#FF7043",
       bgColor: "#FFF3E0",
+      image: "/images/cover-api-kecil.jpg",
     },
     {
       id: "alat-listrik",
@@ -71,6 +74,7 @@ export function CategoryScreen() {
       count: recipes.filter((r) => r.category === "alat-listrik").length,
       color: "#0277BD",
       bgColor: "#E3F2FD",
+      image: "/images/cover-alat-listrik.png",
     },
   ];
 
@@ -358,15 +362,23 @@ export function CategoryScreen() {
                     </div>
 
                     <div className="flex flex-col items-center gap-4 mt-6">
-                      {/* Icon Container */}
+                      {/* Icon or Image Container */}
                       <div 
-                        className="bg-white rounded-[20px] p-3.5 shadow-sm transition-all duration-300"
+                        className="w-20 h-20 bg-white rounded-[20px] overflow-hidden shadow-sm transition-all duration-300 flex items-center justify-center"
                         style={{ 
                           transform: isHovered ? "scale(1.1) rotate(5deg)" : "scale(1)",
                           boxShadow: isHovered ? `0 10px 20px -5px ${category.color}40` : '0 4px 10px rgba(0,0,0,0.02)'
                         }}
                       >
-                        <Icon size={36} strokeWidth={2.5} style={{ color: category.color }} />
+                        {category.image ? (
+                          <img
+                            src={category.image}
+                            alt={category.title}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <Icon size={36} strokeWidth={2.5} style={{ color: category.color }} />
+                        )}
                       </div>
 
                       {/* Text details */}

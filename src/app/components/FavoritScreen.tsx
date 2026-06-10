@@ -38,10 +38,7 @@ export function FavoritScreen() {
       )
     : favoriteRecipes;
 
-  const handleRemoveFavorite = (recipeId: string) => {
-    removeFavorite(recipeId);
-    setFavoriteIds(getFavorites());
-  };
+  const [recipeToDelete, setRecipeToDelete] = useState<{ id: string; title: string } | null>(null);
 
   return (
     <div className="min-h-screen pt-16 pb-8" style={{ background: colors.background }}>
@@ -125,8 +122,8 @@ export function FavoritScreen() {
                   </div>
                 </button>
                 <button
-                  onClick={() => handleRemoveFavorite(recipe.id)}
-                  className="w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+                  onClick={() => setRecipeToDelete({ id: recipe.id, title: recipe.title })}
+                  className="w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 transition-transform cursor-pointer"
                   style={{ backgroundColor: `${colors.danger}20` }}
                 >
                   <Trash2 size={20} style={{ color: colors.danger }} />
@@ -163,6 +160,52 @@ export function FavoritScreen() {
           </div>
         )}
       </div>
+
+      {recipeToDelete && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 animate-fade-in">
+          <div 
+            className="w-full max-w-sm rounded-[24px] p-6 shadow-2xl text-center border"
+            style={{ backgroundColor: colors.cardBg, borderColor: `${colors.primary}20` }}
+          >
+            <div 
+              className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl"
+              style={{ backgroundColor: `${colors.danger}15` }}
+            >
+              🗑️
+            </div>
+            <h3 className="text-xl font-bold mb-2" style={{ color: colors.text }}>
+              Hapus dari Favorit?
+            </h3>
+            <p className="text-sm mb-6 leading-relaxed" style={{ color: colors.textSecondary }}>
+              Apakah kamu yakin ingin menghapus <strong style={{ color: colors.text }}>"{recipeToDelete.title}"</strong> dari resep favoritmu?
+            </p>
+            <div className="flex gap-3">
+              <button
+                onClick={() => setRecipeToDelete(null)}
+                className="flex-1 py-3 rounded-full font-semibold transition-all border cursor-pointer active:scale-95 text-sm"
+                style={{ 
+                  borderColor: '#E5E7EB',
+                  color: colors.textSecondary,
+                  backgroundColor: 'transparent'
+                }}
+              >
+                Batal
+              </button>
+              <button
+                onClick={() => {
+                  removeFavorite(recipeToDelete.id);
+                  setFavoriteIds(getFavorites());
+                  setRecipeToDelete(null);
+                }}
+                className="flex-1 py-3 rounded-full font-semibold text-white transition-all cursor-pointer active:scale-95 text-sm shadow-md"
+                style={{ backgroundColor: colors.danger }}
+              >
+                Ya, Hapus
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <BottomNav />
     </div>
