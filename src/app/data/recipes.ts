@@ -1037,7 +1037,7 @@ export const recipes: Recipe[] = [
     emoji: "🍚",
     time: "30 menit",
     difficulty: "Mudah",
-    image: "/images/nasi-putih-rice-cooker.png",
+    image: "/images/nasi rice cooker.jpg",
     ingredients: [
       { name: "Beras", amount: "2 cup" },
       { name: "Air", amount: "2.5 cup" },
@@ -1061,6 +1061,7 @@ export const recipes: Recipe[] = [
     emoji: "🍚",
     time: "35 menit",
     difficulty: "Mudah",
+    image: "/images/nasi liwet sederhana.jpg",
     ingredients: [
       { name: "Beras", amount: "2 cup" },
       { name: "Air bersih", amount: "2.5 cup" },
@@ -1088,7 +1089,7 @@ export const recipes: Recipe[] = [
     emoji: "🍲",
     time: "30 menit",
     difficulty: "Mudah",
-    image: "/images/sup Telur Air Kaldu Sederhana.jpg",
+    image: "/images/sayur sop mejikom.jpg",
     ingredients: [
       { name: "Wortel", amount: "1 buah (iris tipis)" },
       { name: "Kentang", amount: "1 buah (potong dadu)" },
@@ -1113,6 +1114,7 @@ export const recipes: Recipe[] = [
     emoji: "🥣",
     time: "25 menit",
     difficulty: "Mudah",
+    image: "/images/bubur ayam polos.jpg",
     ingredients: [
       { name: "Beras", amount: "1/2 cup" },
       { name: "Air kaldu ayam", amount: "3 cup" },
@@ -1134,6 +1136,7 @@ export const recipes: Recipe[] = [
     emoji: "🥤",
     time: "5 menit",
     difficulty: "Mudah",
+    image: "/images/Smoothie Pisang Oats Cokelat.jpg",
     ingredients: [
       { name: "Pisang matang", amount: "2 buah" },
       { name: "Oats cepat masak", amount: "3 sdm" },
@@ -1156,6 +1159,7 @@ export const recipes: Recipe[] = [
     emoji: "🥑",
     time: "5 menit",
     difficulty: "Mudah",
+    image: "/images/Jus Alpukat Kental Manis.jpg",
     ingredients: [
       { name: "Alpukat mentega matang", amount: "1 buah" },
       { name: "Susu kental manis cokelat", amount: "3 sdm" },
