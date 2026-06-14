@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
 import { ArrowLeft, Volume2, Pause, Play, Check, Settings, AlertTriangle, ChevronDown, ChevronUp } from "lucide-react";
-import { getRecipeById } from "../data/recipes";
-import { useTheme } from "../context/ThemeContext";
+import { getRecipeById } from "../data/recipes";import { resolveImagePath } from "../utils/imagePaths";import { useTheme } from "../context/ThemeContext";
 import { VoiceOver } from "./VoiceOver";
 import { BottomNav } from "./BottomNav";
 
@@ -174,7 +173,7 @@ export function CookingScreen() {
               <div className="animate-float select-none pointer-events-none ml-2 flex-shrink-0">
                 {recipe.image ? (
                   <img
-                    src={recipe.image}
+                    src={resolveImagePath(recipe.image)}
                     alt={recipe.title}
                     className="w-20 h-20 md:w-24 md:h-24 rounded-2xl object-cover border-4 border-white/30 shadow-lg transform rotate-3"
                   />

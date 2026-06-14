@@ -249,7 +249,7 @@ export const recipes: Recipe[] = [
     emoji: "🍞",
     time: "5 menit",
     difficulty: "Mudah",
-    image: "/images/roti-selai-coklat.png",
+    image: "/image/roti",
     videoUrl: "https://www.youtube.com/embed/9EenlnXir_A",
     ingredients: [
       { name: "Roti tawar", amount: "2 lembar" },

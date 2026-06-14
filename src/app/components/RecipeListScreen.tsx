@@ -1,6 +1,7 @@
 import { ArrowLeft, Clock, ChefHat } from "lucide-react";
 import { useNavigate, useParams } from "react-router";
 import { BottomNav } from "./BottomNav";
+import { resolveImagePath } from "../utils/imagePaths";
 import { useTheme } from "../context/ThemeContext";
 import { getRecipesByCategory } from "../data/recipes";
 
@@ -85,7 +86,7 @@ export function RecipeListScreen() {
                 {recipe.image ? (
                   <div className="w-16 h-16 rounded-[20px] flex-shrink-0 overflow-hidden shadow-md transition-transform duration-300 group-hover:scale-105">
                     <img
-                      src={recipe.image}
+                      src={resolveImagePath(recipe.image)}
                       alt={recipe.title}
                       className="w-full h-full object-cover"
                     />

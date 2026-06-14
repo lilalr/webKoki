@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import { useState, useEffect } from "react";
 import { BottomNav } from "./BottomNav";
 import { recipes, kitchenTools } from "../data/recipes";
+import { resolveImagePath } from "../utils/imagePaths";
 import { useTheme } from "../context/ThemeContext";
 import chefGirl from "../../imports/chef_girl_transparent_v2.png";
 import chefBoy from "../../imports/chef_boy_standing.png";
@@ -260,7 +261,7 @@ export function CategoryScreen() {
                     {recipe.image ? (
                       <div className="w-16 h-16 rounded-[16px] flex-shrink-0 overflow-hidden shadow-md">
                         <img
-                          src={recipe.image}
+                          src={resolveImagePath(recipe.image)}
                           alt={recipe.title}
                           className="w-full h-full object-cover"
                         />
@@ -372,7 +373,7 @@ export function CategoryScreen() {
                       >
                         {category.image ? (
                           <img
-                            src={category.image}
+                            src={resolveImagePath(category.image)}
                             alt={category.title}
                             className="w-full h-full object-cover"
                           />

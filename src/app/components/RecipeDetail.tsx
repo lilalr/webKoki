@@ -1,6 +1,7 @@
 import { ArrowLeft, Bookmark, Check, AlertTriangle, Lightbulb } from "lucide-react";
 import { useNavigate, useParams } from "react-router";
 import { useState } from "react";
+import { resolveImagePath } from "../utils/imagePaths";
 import { getRecipeById } from "../data/recipes";
 import { BottomNav } from "./BottomNav";
 import { useTheme } from "../context/ThemeContext";
@@ -241,7 +242,7 @@ export function RecipeDetail() {
           <div className="relative w-full pb-[56.25%] h-0 rounded-[2.5rem] overflow-hidden shadow-xl mb-8 group">
             {/* The real food photo */}
             <img
-              src={recipe.image}
+              src={resolveImagePath(recipe.image)}
               alt={recipe.title}
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             />

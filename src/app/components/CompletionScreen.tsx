@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router";
 import { getRecipeById } from "../data/recipes";
+import { resolveImagePath } from "../utils/imagePaths";
 import { useTheme } from "../context/ThemeContext";
 import { addCompletedRecipe, getChefLevel, getCompletedRecipes } from "../utils/completedRecipes";
 import chefGirl from "../../imports/chef_girl_celebrating.png";
@@ -136,7 +137,7 @@ export function CompletionScreen() {
           <div className="flex items-center gap-4 mb-4 text-left">
             {recipe?.image ? (
               <img
-                src={recipe.image}
+                src={resolveImagePath(recipe.image)}
                 alt={recipe?.title}
                 className="w-16 h-16 rounded-2xl object-cover shadow-md border-2"
                 style={{ borderColor: colors.secondary }}

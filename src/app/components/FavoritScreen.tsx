@@ -6,6 +6,7 @@ import { ChefMascot } from "./ChefMascot";
 import { useTheme } from "../context/ThemeContext";
 import { getFavorites, removeFavorite } from "../utils/favorites";
 import { getRecipeById } from "../data/recipes";
+import { resolveImagePath } from "../utils/imagePaths";
 
 export function FavoritScreen() {
   const navigate = useNavigate();
@@ -82,7 +83,7 @@ export function FavoritScreen() {
                   {recipe.image ? (
                     <div className="w-16 h-16 rounded-2xl flex-shrink-0 overflow-hidden shadow-md">
                       <img
-                        src={recipe.image}
+                        src={resolveImagePath(recipe.image)}
                         alt={recipe.title}
                         className="w-full h-full object-cover"
                       />
